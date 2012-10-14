@@ -1,0 +1,6 @@
+[submodule "views/frontoffice/default"]
+	path = views/frontoffice/default
+	url = https://github.com/Smalte/theme.frontoffice.default.git
+[submodule "views/backoffice/default"]
+	path = views/backoffice/default
+	url = https://github.com/Smalte/theme.backoffice.default.git
