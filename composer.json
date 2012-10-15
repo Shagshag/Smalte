@@ -1,9 +1,9 @@
 {
-	"name": "Smalte/Smalte",
-	"license": "OSL-3.0",
-	"type": "smalte-core",
-	"description": "Smalte is an amazing software to build your e-commerce website.",
-	"authors": [
+	"name"			: "Smalte/Smalte",
+	"license"		: "OSL-3.0",
+	"type"			: "smalte-core",
+	"description"	: "Smalte is an amazing software to build your e-commerce website.",
+	"authors"		: [
 		{
 			"name": "Julien Breux"
 		},
@@ -24,6 +24,26 @@
 		"vendor-dir": "libraries"
 	},
 	"require": {
-		"php": ">=5.3.3"
+		"php"						: ">=5.3.3",
+
+		"symfony/class-loader"		: "2.2.*",
+		"symfony/yaml"          	: "2.1.*",
+		"symfony/config"        	: "2.1.*",
+		"symfony/routing"			: "2.1.*",
+		"symfony/filesystem"		: "2.2.*",
+		"symfony/finder"			: "2.2.*",
+		"symfony/console"       	: "2.1.*",
+		"symfony/http-kernel"		: "2.2.*",
+		"symfony/http-foundation"	: "2.2.*",
+		"symfony/validator"     	: "2.1.*",
+
+		"doctrine/dbal"         	: "2.3.*",
+		"doctrine/orm"				: "2.3.*",
+
+		"swiftmailer/swiftmailer"	: "4.2.*",
+
+		"monolog/monolog"       	: "1.0.*",
+
+		"imagine/Imagine"			: "v0.3.0"
 	}
 }
