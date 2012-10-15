@@ -12,3 +12,6 @@ Thumbs.db
 .idea
 .project
 .settings
+
+# Only on development
+composer.lock
