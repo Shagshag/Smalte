@@ -27,6 +27,7 @@
 		"php"						: ">=5.3.3",
 
 		"symfony/class-loader"		: "2.1.*",
+		"symfony/event-dispatcher"	: "2.1.*",
 		"symfony/yaml"          	: "2.1.*",
 		"symfony/config"        	: "2.1.*",
 		"symfony/routing"			: "2.1.*",
