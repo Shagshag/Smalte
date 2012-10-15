@@ -13,5 +13,10 @@ Thumbs.db
 .project
 .settings
 
+# Externals libraries and composer
+libraries/*
+!libraries/Smalte
+!libraries/README.md
+
 # Only on development
 composer.lock
