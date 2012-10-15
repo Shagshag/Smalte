@@ -1,0 +1,29 @@
+{
+	"name": "Smalte/Smalte",
+	"license": "OSL-3.0",
+	"type": "smalte-core",
+	"description": "Smalte is an amazing software to build your e-commerce website.",
+	"authors": [
+		{
+			"name": "Julien Breux"
+		},
+		{
+			"name": "Fabien Serny"
+		},
+		{
+			"name": "Grégoire Poulain"
+		},
+		{
+			"name": "Alain Folletete"
+		},
+		{
+			"name": "Raphaël Malié"
+		}
+	],
+	"config": {
+		"vendor-dir": "libraries"
+	},
+	"require": {
+		"php": ">=5.3.3"
+	}
+}
