@@ -1,0 +1,35 @@
+# (c) Smalte - 2012 ~ Until the end of the world...
+#
+# Julien Breux <julien@smalte.org>
+# Fabien Serny <fabien@smalte.org>
+# Grégoire Poulain <gregoire@smalte.org>
+# Alain Folletete <alain@smalte.org>
+# Raphaël Malié <raphael@smalte.org>
+#
+# Thanks a lot to our community!
+#
+# Read LICENCE file for more information.
+
+# SECTION: PHP
+
+# OVH.com: To enable PHP 5.4, uncomment next line
+#SetEnv PHP_VER 5_4
+
+# 1and1.com: To enable PHP 5.4, uncomment next line
+#AddHandler x-mapp-php6 .php
+
+# SECTION: Rewrite
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+	# To use specific base, uncomment next line
+    #RewriteBase /
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*)$ index.php [QSA,L]
+</IfModule>
+
+# SECTION: Security
+
+RedirectMatch 403 ^/(controllers|data|entities|libraries|modules|views|\.git).*$
+Options +FollowSymLinks -Indexes -MultiViews
