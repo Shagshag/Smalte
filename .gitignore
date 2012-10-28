@@ -18,5 +18,9 @@ libraries/*
 !libraries/Smalte
 !libraries/README.md
 
+# Externals modules
+modules/*
+!modules/README.md
+
 # Only on development
 composer.lock
