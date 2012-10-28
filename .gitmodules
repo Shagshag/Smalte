@@ -7,3 +7,6 @@
 [submodule "libraries/smalte"]
 	path = libraries/smalte
 	url = https://github.com/Smalte/framework.git
+[submodule "modules/smalte/sample"]
+	path = modules/smalte/sample
+	url = https://github.com/Smalte/module.sample.git
