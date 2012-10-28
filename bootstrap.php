@@ -22,3 +22,6 @@ $loader = require_once PATH_ROOT.'/libraries/autoload.php';
 
 // Controller namespace
 $loader->add('controllers', PATH_ROOT);
+
+// Module namespace
+$loader->add('modules', PATH_ROOT);
