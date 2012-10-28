@@ -27,7 +27,7 @@ Thumbs.db
 
 # Externals libraries and composer
 libraries/*
-!libraries/Smalte
+!libraries/smalte
 !libraries/README.md
 
 # Externals modules
