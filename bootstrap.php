@@ -17,6 +17,10 @@
 // Define root path
 define('PATH_ROOT', dirname(__FILE__));
 
+/**
+ *	SECTION: Autoload
+ */
+
 // Use composer auto loader (PSR-0 compliant)
 $loader = require_once PATH_ROOT.'/libraries/autoload.php';
 
