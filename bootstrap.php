@@ -17,7 +17,7 @@
 // Define root path
 define('PATH_ROOT', dirname(__FILE__));
 
-// Use composer bootstrap (PSR-0 compliant)
+// Use composer auto loader (PSR-0 compliant)
 $loader = require_once PATH_ROOT.'/libraries/autoload.php';
 
 // Controller namespace
