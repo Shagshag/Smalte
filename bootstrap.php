@@ -14,3 +14,12 @@
  * Read LICENCE file for more information.
  */
 
+// SECTION: Auto-load
+require_once __DIR__.'/libraries/Symfony/Component/ClassLoader/UniversalClassLoader.php';
+
+use Symfony\Component\ClassLoader\UniversalClassLoader;
+
+$loader = new UniversalClassLoader();
+$loader->registerNamespaces(include __DIR__.'/data/cache/loader/namespaces.php');
+$loader->registerPrefixes(include __DIR__.'/data/cache/loader/prefixes.php');
+$loader->register();
