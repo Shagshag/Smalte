@@ -24,6 +24,7 @@ Thumbs.db
 .idea
 .project
 .settings
+.buildpath
 
 # Externals libraries and composer
 libraries/*
