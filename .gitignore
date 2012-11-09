@@ -28,7 +28,7 @@ Thumbs.db
 
 # Externals libraries and composer
 libraries/*
-!libraries/smalte
+!libraries/Smalte
 !libraries/.htaccess
 !libraries/README.md
 
