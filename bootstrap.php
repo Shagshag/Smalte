@@ -14,16 +14,3 @@
  * Read LICENCE file for more information.
  */
 
-// Define root path
-define('PATH_ROOT', dirname(__FILE__));
-
-// SECTION: Auto loader
-
-// Use composer auto loader (PSR-0 compliant)
-$loader = require_once PATH_ROOT.'/libraries/autoload.php';
-
-// Controller namespace
-$loader->add('controllers', PATH_ROOT);
-
-// Module namespace
-$loader->add('modules', PATH_ROOT);

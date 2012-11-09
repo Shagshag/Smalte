@@ -4,8 +4,8 @@
 [submodule "views/backoffice/default"]
 	path = views/backoffice/default
 	url = https://github.com/Smalte/theme.backoffice.default.git
-[submodule "libraries/smalte"]
-	path = libraries/smalte
+[submodule "libraries/Smalte"]
+	path = libraries/Smalte
 	url = https://github.com/Smalte/framework.git
 [submodule "modules/smalte/sample"]
 	path = modules/smalte/sample
