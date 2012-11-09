@@ -17,3 +17,8 @@ PHP 5.3 (ready for PHP 5.4), MySQL 5, Apache 2 (or Nginx) are required.
 * [Grégoire Poulain](http://smalte.org/team#GregoirePoulain) | *[@GregoirePoulain](http://twitter.com/GregoirePoulain)*
 * [Alain Folletete](http://smalte.org/team#AlainFolletete) | *[@AlainFolletete](http://twitter.com/AlainFolletete)*
 * [Raphaël Malié](http://smalte.org/team#RaphaelMalie) | *[@RaphaelMalie](http://twitter.com/RaphaelMalie)*
+
+## Install
+
+### Git Hub
+    git clone --recursive https://github.com/Smalte/Smalte.git
