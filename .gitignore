@@ -36,6 +36,3 @@ libraries/*
 modules/*
 !modules/README.md
 !modules/smalte
-
-# Only on development
-composer.lock
