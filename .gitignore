@@ -26,12 +26,6 @@ Thumbs.db
 .settings
 .buildpath
 
-# Externals libraries and composer
-libraries/*
-!libraries/Smalte
-!libraries/.htaccess
-!libraries/README.md
-
 # Externals modules
 modules/*
 !modules/README.md
