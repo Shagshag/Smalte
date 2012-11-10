@@ -10,3 +10,6 @@
 [submodule "modules/smalte/sample"]
 	path = modules/smalte/sample
 	url = https://github.com/Smalte/module.sample.git
+[submodule "tests"]
+	path = tests
+	url = https://github.com/Smalte/tests.git
