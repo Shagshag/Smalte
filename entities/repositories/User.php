@@ -8,7 +8,5 @@ class User extends Repository
     public function doSomething()
     {
     	echo 'HELLO REPOSITORY<br />';
-    	
-    	$this->callHelper('position.upCollection');
     }
 }

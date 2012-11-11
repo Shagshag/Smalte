@@ -1,5 +1,4 @@
 <?php
-
 /*
  * (c) Smalte - 2012 ~ Until the end of the world...
  *
@@ -39,7 +38,7 @@ use Doctrine\ORM\EntityManager,
 
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\User');
 $compiler->addFile(__DIR__.'/entities/schemas/User.yml');
-$compiler->addFile(__DIR__.'/modules/smalte/sample/entities/extends/schemas/User.yml');
+$compiler->addFile(__DIR__.'/modules/smalte/sample/entities/extensions/schemas/User.yml', 'smalte.sample');
 $compiler->write(__DIR__.'/data/doctrine/schemas/');
 
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Modules\\Smalte\\Sample\\Entities\\Topic');

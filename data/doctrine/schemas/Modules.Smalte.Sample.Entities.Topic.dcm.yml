@@ -1,15 +1,5 @@
-Topic:
-    type: entity
-    table: topics
-    id:
-        id:
-            type: integer
-            generator:
-                strategy: AUTO
-    fields:
-        name:
-            type: string
 Modules\Smalte\Sample\Entities\Topic:
+    modules: {  }
     type: entity
     table: topics
     id:
