@@ -1,0 +1,21 @@
+# Security
+security:
+    token: EditMePlease
+
+# Database
+database:
+    master:
+        driver:     pdo_mysql
+        host:       localhost
+        port:       ~
+        dbname:     smalte
+        user:       root
+        password:   ~
+        charset:    UTF8
+
+# Mail
+mail:
+    transport:  smtp
+    host:       localhost
+    username:   ~
+    password:   ~

@@ -13,13 +13,13 @@
  * Read LICENCE file for more information.
  */
  
-// SECTION: Debug
+// ===== SECTION: Debug =====
 function p($a){echo '<xmp>';print_r($a);echo '</xmp>';}
 function d($a){p($a);exit;}
 
 
 
-// SECTION: Auto-load
+// ===== SECTION: Auto-load =====
 require_once __DIR__.'/libraries/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
 use Symfony\Component\ClassLoader\UniversalClassLoader;
@@ -31,7 +31,33 @@ $loader->register();
 
 
 
-// SECTION: ORM
+// ===== SECTION: Configuration =====
+use Smalte\Utils\ArrayUtils;
+use Smalte\Environment\Factory;
+use Symfony\Component\Yaml\Yaml;
+
+// Get main configuration file
+$configuration = Yaml::parse(file_get_contents(__DIR__.'/data/config/config.yml'));
+
+// Check all environments and return current environment
+$environmentConfiguration = Yaml::parse(file_get_contents(__DIR__.'/data/config/environments.yml'));
+$currentEnvironment = Factory::getCurrentEnvironment($environmentConfiguration, $_SERVER['REMOTE_ADDR'], $_ENV, $_COOKIE);
+
+if ($currentEnvironment)
+{
+	// Test if environment file exist
+	$environmentConfigurationFile = __DIR__.'/data/config/config.'.$currentEnvironment->getName().'.yml';
+	if (file_exists($environmentConfigurationFile))
+	{
+		// Get environment configuration file and merge with main configuration
+		$configurationEnvironment = Yaml::parse(file_get_contents($environmentConfigurationFile));
+		$configuration = ArrayUtils::merge($configuration, $configurationEnvironment);
+	}
+}
+
+
+
+// ===== SECTION: ORM =====
 use Doctrine\ORM\EntityManager,
 	Doctrine\ORM\Tools\Setup,
 	Doctrine\Common\Cache\ArrayCache;
@@ -53,10 +79,11 @@ $config = Setup::createConfiguration(
 $config->setMetadataDriverImpl(new Smalte\ORM\Parser\YamlDriver(__DIR__.'/data/doctrine/schemas/'));
 
 $em = EntityManager::create(array(
-    'driver'   => 'pdo_mysql',
-    'user'     => 'root',
-    'password' => '',
-    'dbname'   => 'smalte',
+    'driver'	=> $configuration['database']['master']['driver'],
+	'host'		=>$configuration['database']['master']['host'],
+    'user'		=> $configuration['database']['master']['user'],
+    'password'	=> $configuration['database']['master']['password'],
+    'dbname'	=> $configuration['database']['master']['dbname'],
 ), $config);
 
 $em->getMetadataFactory()->setReflectionService(new Smalte\ORM\Parser\AccessibleRuntimeReflectionService());

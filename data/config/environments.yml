@@ -1,0 +1,14 @@
+production:
+    environmentVariables:
+        SMALTE: production
+
+development:
+    environmentVariables:
+        SMALTE: develomment
+    cookies:
+        SMALTE: 1
+
+test:
+    remoteAddresses:
+        - 127.0.0.1
+        - ::1
