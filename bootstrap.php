@@ -32,9 +32,9 @@ $loader->register();
 
 
 // ===== SECTION: Configuration =====
-use Smalte\Utils\ArrayUtils;
-use Smalte\Environment\Factory;
-use Symfony\Component\Yaml\Yaml;
+use Smalte\Utils\ArrayUtils,
+	Smalte\Environment\Factory,
+	Symfony\Component\Yaml\Yaml;
 
 // Get main configuration file
 $configuration = Yaml::parse(file_get_contents(__DIR__.'/data/config/config.yml'));
@@ -51,7 +51,10 @@ if ($currentEnvironment)
 	{
 		// Get environment configuration file and merge with main configuration
 		$configurationEnvironment = Yaml::parse(file_get_contents($environmentConfigurationFile));
-		$configuration = ArrayUtils::merge($configuration, $configurationEnvironment);
+		if ($configurationEnvironment)
+		{
+			$configuration = ArrayUtils::merge($configuration, $configurationEnvironment);
+		}
 	}
 }
 
@@ -80,7 +83,7 @@ $config->setMetadataDriverImpl(new Smalte\ORM\Parser\YamlDriver(__DIR__.'/data/d
 
 $em = EntityManager::create(array(
     'driver'	=> $configuration['database']['master']['driver'],
-	'host'		=>$configuration['database']['master']['host'],
+	'host'		=> $configuration['database']['master']['host'],
     'user'		=> $configuration['database']['master']['user'],
     'password'	=> $configuration['database']['master']['password'],
     'dbname'	=> $configuration['database']['master']['dbname'],
