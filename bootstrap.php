@@ -23,3 +23,27 @@ $loader = new UniversalClassLoader();
 $loader->registerNamespaces(include __DIR__.'/data/cache/loader/namespaces.php');
 $loader->registerPrefixes(include __DIR__.'/data/cache/loader/prefixes.php');
 $loader->register();
+
+// SECTION: Configuration
+use Smalte\Utils\ArrayUtils;
+use Smalte\Environment\Factory;
+use Symfony\Component\Yaml\Yaml;
+
+// Get main configuration file
+$configuration = Yaml::parse(file_get_contents(__DIR__.'/data/config/config.yml'));
+
+// Check all environments and return current environment
+$environmentConfiguration = Yaml::parse(file_get_contents(__DIR__.'/data/config/environments.yml'));
+$currentEnvironment = Factory::getCurrentEnvironment($environmentConfiguration, $_SERVER['REMOTE_ADDR'], $_ENV, $_COOKIE);
+
+if ($currentEnvironment)
+{
+	// Test if environment file exist
+	$environmentConfigurationFile = __DIR__.'/data/config/config.'.$currentEnvironment->getName().'.yml';
+	if (file_exists($environmentConfigurationFile))
+	{
+		// Get environment configuration file and merge with main configuration
+		$configurationEnvironment = Yaml::parse(file_get_contents($environmentConfigurationFile));
+		$configuration = ArrayUtils::merge($configuration, $configurationEnvironment);
+	}
+}
