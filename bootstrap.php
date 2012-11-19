@@ -32,9 +32,9 @@ $loader->register();
 
 
 // ===== SECTION: Configuration =====
-use Smalte\Utils\ArrayUtils,
-	Smalte\Environment\Factory,
-	Symfony\Component\Yaml\Yaml;
+use Smalte\Utils\ArrayUtils;
+use Smalte\Environment\Factory;
+use Symfony\Component\Yaml\Yaml;
 
 // Get main configuration file
 $configuration = Yaml::parse(file_get_contents(__DIR__.'/data/config/config.yml'));
@@ -61,9 +61,9 @@ if ($currentEnvironment)
 
 
 // ===== SECTION: ORM =====
-use Doctrine\ORM\EntityManager,
-	Doctrine\ORM\Tools\Setup,
-	Doctrine\Common\Cache\ArrayCache;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\Tools\Setup;
+use Doctrine\Common\Cache\ArrayCache;
 
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\User');
 $compiler->addFile(__DIR__.'/entities/schemas/User.yml');
