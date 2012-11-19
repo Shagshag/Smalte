@@ -1,4 +1,5 @@
 <?php
+
 /*
  * (c) Smalte - 2012 ~ Until the end of the world...
  *
