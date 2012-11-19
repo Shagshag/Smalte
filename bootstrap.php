@@ -35,13 +35,18 @@ $loader->register();
 use Smalte\Utils\ArrayUtils;
 use Smalte\Environment\Factory;
 use Symfony\Component\Yaml\Yaml;
+use Symfony\Component\HttpFoundation\Request;
+
+// Create request and get current client IP
+$request = Request::createFromGlobals();
+$clientIp = $request->getClientIp() ?: '0.0.0.0';
 
 // Get main configuration file
 $configuration = Yaml::parse(file_get_contents(__DIR__.'/data/config/config.yml'));
 
 // Check all environments and return current environment
 $environmentConfiguration = Yaml::parse(file_get_contents(__DIR__.'/data/config/environments.yml'));
-$currentEnvironment = Factory::getCurrentEnvironment($environmentConfiguration, $_SERVER['REMOTE_ADDR'], $_ENV, $_COOKIE);
+$currentEnvironment = Factory::getCurrentEnvironment($environmentConfiguration, $clientIp, $_ENV, $_COOKIE);
 
 if ($currentEnvironment)
 {
