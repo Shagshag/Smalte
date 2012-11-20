@@ -1,0 +1,26 @@
+Application:
+    type: entity
+    table: applications
+    id:
+        id:
+            type: integer
+            unsigned: true
+            generator:
+                strategy: AUTO
+    uniqueConstraints:
+        name:
+            columns: name
+        prefix:
+            columns: prefix
+    fields:
+        name:
+            type: string
+        prefix:
+            type: string
+        enabled:
+            type: boolean
+        created:
+            type: datetime
+        updated:
+            type: datetime
+            nullable: true
