@@ -32,7 +32,7 @@ class Route extends Entity
 	/** @var string Module */
 	protected $module;
 
-	/** @var string Application */
+	/** @var \Entities\Application Application */
 	protected $application;
 
 	/** @var string Controller */
@@ -127,15 +127,15 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param string $application Application
+	 * @param \Entities\Application $application Application
 	 */
-	public function setApplication($application)
+	public function setApplication(\Entities\Application $application)
 	{
 		$this->application = $application;
 	}
 
 	/**
-	 * @return string
+	 * @return \Entities\Application
 	 */
 	public function getApplication()
 	{
