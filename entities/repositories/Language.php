@@ -20,4 +20,24 @@ use Smalte\ORM\Repository;
 
 class Language extends Repository
 {
+	/**
+	 * Get all IDS from criteria
+	 *
+	 * @param array $criteria Criteria
+	 *
+	 * @return array (E.g. en, fr, au, ...)
+	 */
+	public function getAllIds($criteria)
+	{
+		$ids = array();
+
+		$languageEntities = $this->findBy($criteria);
+
+		foreach ($languageEntities as $languageEntity)
+		{
+			$ids[] = $languageEntity->getId();
+		}
+
+		return $ids;
+	}
 }
