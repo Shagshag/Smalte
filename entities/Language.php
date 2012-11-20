@@ -26,8 +26,8 @@ class Language extends Entity
 	/** @var string Name */
 	protected $name;
 
-	/** @var bool Default */
-	protected $default = false;
+	/** @var bool Main */
+	protected $main = false;
 
 	/** @var bool Enabled */
 	protected $enabled = true;
@@ -79,19 +79,19 @@ class Language extends Entity
 	}
 
 	/**
-	 * @param $default boolean Default
+	 * @param $main boolean Main
 	 */
-	public function setDefault($default)
+	public function setMain($main)
 	{
-		$this->default = (bool)$default;
+		$this->main = (bool)$main;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function getDefault()
+	public function getMain()
 	{
-		return $this->default;
+		return $this->main;
 	}
 
 	/**

@@ -73,12 +73,11 @@ $applications = array(
 	array(
 		'name'		=> 'FrontOffice',
 		'prefix'	=> '',
-		'default'	=> true,
 	),
 	array(
 		'name'		=> 'BackOffice',
 		'prefix'	=> 'admin',
-		'default'	=> false,
+
 	),
 );
 foreach ($applications AS $applicationData)
@@ -86,7 +85,7 @@ foreach ($applications AS $applicationData)
 	$route = new \Entities\Application();
 	foreach ($applicationData as $field => $value)
 	{
-		$method = 'set'.strtoupper(strtolower($field));
+		$method = 'set'.ucfirst(strtolower($field));
 		$route->$method($value);
 	}
 	$em->persist($route);
@@ -99,10 +98,12 @@ $languages = array(
 	array(
 		'id'	=> 'en',
 		'name'	=> 'English',
+		'main'	=> true,
 	),
 	array(
 		'id'	=> 'fr',
 		'name'	=> 'French',
+		'main'	=> false,
 	),
 );
 foreach ($languages AS $languageData)
@@ -110,7 +111,7 @@ foreach ($languages AS $languageData)
 	$route = new \Entities\Language();
 	foreach ($languageData as $field => $value)
 	{
-		$method = 'set'.strtoupper(strtolower($field));
+		$method = 'set'.ucfirst(strtolower($field));
 		$route->$method($value);
 	}
 	$em->persist($route);
@@ -187,7 +188,7 @@ foreach ($routes AS $routeData)
 		}
 		else
 		{
-			$method = 'set'.strtoupper(strtolower($field));
+			$method = 'set'.ucfirst(strtolower($field));
 			$route->$method($value);
 		}
 	}

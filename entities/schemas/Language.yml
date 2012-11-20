@@ -11,9 +11,8 @@ Language:
     fields:
         name:
             type: string
-        default:
+        main:
             type: boolean
-            default: false
         enabled:
             type: boolean
         created:
