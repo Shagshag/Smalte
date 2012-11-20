@@ -26,6 +26,9 @@ class Language extends Entity
 	/** @var string Name */
 	protected $name;
 
+	/** @var bool Default */
+	protected $default = false;
+
 	/** @var bool Enabled */
 	protected $enabled = true;
 
@@ -73,6 +76,22 @@ class Language extends Entity
 	public function getName()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * @param $default boolean Default
+	 */
+	public function setDefault($default)
+	{
+		$this->default = (bool)$default;
+	}
+
+	/**
+	 * @return bool
+	 */
+	public function getDefault()
+	{
+		return $this->default;
 	}
 
 	/**
