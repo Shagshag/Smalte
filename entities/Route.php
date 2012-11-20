@@ -210,7 +210,11 @@ class Route extends Entity
 	 */
 	public function setRequirements($requirements)
 	{
-		$this->requirements = \json_encode($requirements);
+		$requirements = \json_encode($requirements);
+
+		$this->requirements = $requirements !== 'null'
+			? $requirements
+			: NULL;
 	}
 
 	/**
