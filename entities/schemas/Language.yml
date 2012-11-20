@@ -1,0 +1,20 @@
+Language:
+    type: entity
+    table: languages
+    id:
+        id:
+            type: string
+            columnDefinition: "CHAR(2)"
+    uniqueConstraints:
+        name:
+            columns: name
+    fields:
+        name:
+            type: string
+        enabled:
+            type: boolean
+        created:
+            type: datetime
+        updated:
+            type: datetime
+            nullable: true
