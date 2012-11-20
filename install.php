@@ -19,6 +19,8 @@
  * This file is just used during alpha development
  */
 
+define('INSTALL', true);
+
 require __DIR__.'/bootstrap.php';
 
 // ===== SECTION: Router =====
