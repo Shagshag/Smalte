@@ -16,7 +16,9 @@
 
 namespace Entities;
 
-class Route extends \Smalte\ORM\Entity
+use Smalte\ORM\Entity;
+
+class Route extends Entity
 {
 	/** @var string Route name */
 	protected $name;
