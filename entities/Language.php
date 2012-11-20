@@ -36,6 +36,14 @@ class Language extends Entity
 	protected $updated;
 
 	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->setCreated(new \DateTime('now'));
+	}
+
+	/**
 	 * @param string $id ID (E.g. en, fr, au, ...)
 	 */
 	public function setId($id)
