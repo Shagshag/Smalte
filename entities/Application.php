@@ -39,6 +39,14 @@ class Application extends Entity
 	protected $updated;
 
 	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->setCreated(new \DateTime('now'));
+	}
+
+	/**
 	 * @param int $id ID
 	 */
 	public function setId($id)
