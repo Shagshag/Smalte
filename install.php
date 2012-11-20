@@ -56,10 +56,6 @@ catch (Exception $exception)
 	$schema->updateSchema($classes, true);
 }
 
-// Truncate "applications" table
-$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('applications');
-$em->getConnection()->executeUpdate($truncate);
-
 // Truncate "languages" table
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('languages');
 $em->getConnection()->executeUpdate($truncate);
@@ -68,15 +64,21 @@ $em->getConnection()->executeUpdate($truncate);
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('routes');
 $em->getConnection()->executeUpdate($truncate);
 
+// Truncate "applications" table
+$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('applications');
+$em->getConnection()->executeUpdate($truncate);
+
 // Add application data
 $applications = array(
 	array(
 		'name'		=> 'FrontOffice',
 		'prefix'	=> '',
+		'default'	=> true,
 	),
 	array(
 		'name'		=> 'BackOffice',
 		'prefix'	=> 'admin',
+		'default'	=> false,
 	),
 );
 foreach ($applications AS $applicationData)
