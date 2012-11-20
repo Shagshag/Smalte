@@ -20,6 +20,9 @@ use Smalte\ORM\Entity;
 
 class Route extends Entity
 {
+	/** @var int ID */
+	protected $id;
+
 	/** @var string Route name */
 	protected $name;
 
@@ -49,6 +52,30 @@ class Route extends Entity
 
 	/** @var \DateTime Updated date */
 	protected $updated;
+
+	/**
+	 * Constructor
+	 */
+	public function __construct()
+	{
+		$this->setCreated(new \DateTime('now'));
+	}
+
+	/**
+	 * @param int $id
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getId()
+	{
+		return $this->id;
+	}
 
 	/**
 	 * @param string $action
