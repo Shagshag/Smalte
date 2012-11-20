@@ -13,6 +13,7 @@ Language:
             type: string
         default:
             type: boolean
+            default: false
         enabled:
             type: boolean
         created:
