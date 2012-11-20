@@ -1,0 +1,36 @@
+Route:
+    type: entity
+    table: routes
+    id:
+        id:
+            type: integer
+            unsigned: true
+            generator:
+                strategy: AUTO
+    uniqueConstraints:
+        route:
+            columns: name
+    fields:
+        name:
+            type: string
+        pattern:
+            type: string
+        module:
+            type: string
+            nullable: true
+        application:
+            type: string
+        controller:
+            type: string
+        action:
+            type: string
+        requirements:
+            type: string
+            nullable: true
+        enabled:
+            type: boolean
+        created:
+            type: datetime
+        updated:
+            type: datetime
+            nullable: true
