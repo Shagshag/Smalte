@@ -24,10 +24,27 @@ define('INSTALL', true);
 require __DIR__.'/bootstrap.php';
 
 // ===== SECTION: Router =====
+// Add application schema
+$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Application');
+$compiler->addFile(__DIR__.'/entities/schemas/Application.yml');
+$compiler->write(__DIR__.'/data/doctrine/schemas/');
+
+// Add language schema
+$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Language');
+$compiler->addFile(__DIR__.'/entities/schemas/Language.yml');
+$compiler->write(__DIR__.'/data/doctrine/schemas/');
+
+// Add route schema
+$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Route');
+$compiler->addFile(__DIR__.'/entities/schemas/Route.yml');
+$compiler->write(__DIR__.'/data/doctrine/schemas/');
+
 // Dump schema in database
 use Doctrine\ORM\Tools\SchemaTool;
 $schema = new SchemaTool($em);
 $classes = array(
+	$em->getClassMetadata('Entities\Application'),
+	$em->getClassMetadata('Entities\Language'),
 	$em->getClassMetadata('Entities\Route'),
 );
 try
@@ -39,16 +56,67 @@ catch (Exception $exception)
 	$schema->updateSchema($classes, true);
 }
 
-// Add schema
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Route');
-$compiler->addFile(__DIR__.'/entities/schemas/Route.yml');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
+// Truncate "applications" table
+$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('applications');
+$em->getConnection()->executeUpdate($truncate);
+
+// Truncate "languages" table
+$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('languages');
+$em->getConnection()->executeUpdate($truncate);
 
 // Truncate "routes" table
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('routes');
 $em->getConnection()->executeUpdate($truncate);
 
-// Add data
+// Add application data
+$applications = array(
+	array(
+		'name'		=> 'FrontOffice',
+		'prefix'	=> '',
+	),
+	array(
+		'name'		=> 'BackOffice',
+		'prefix'	=> 'admin',
+	),
+);
+foreach ($applications AS $applicationData)
+{
+	$route = new \Entities\Application();
+	foreach ($applicationData as $field => $value)
+	{
+		$method = 'set'.strtoupper(strtolower($field));
+		$route->$method($value);
+	}
+	$em->persist($route);
+}
+$em->flush();
+$em->clear();
+
+// Add language data
+$languages = array(
+	array(
+		'id'	=> 'en',
+		'name'	=> 'English',
+	),
+	array(
+		'id'	=> 'fr',
+		'name'	=> 'French',
+	),
+);
+foreach ($languages AS $languageData)
+{
+	$route = new \Entities\Language();
+	foreach ($languageData as $field => $value)
+	{
+		$method = 'set'.strtoupper(strtolower($field));
+		$route->$method($value);
+	}
+	$em->persist($route);
+}
+$em->flush();
+$em->clear();
+
+// Add route data
 $routes = array(
 	array(
 		'name'			=> 'foHome',
@@ -107,11 +175,19 @@ $routes = array(
 );
 foreach ($routes AS $routeData)
 {
-	$route = new \Entities\Route;
+	$route = new \Entities\Route();
 	foreach ($routeData as $field => $value)
 	{
-		$method = 'set'.strtoupper(strtolower($field));
-		$route->$method($value);
+		if ($field == 'application')
+		{
+			$application = $em->getRepository('Entities\Application')->findOneBy(array('name' => $value));
+			$route->setApplication($application);
+		}
+		else
+		{
+			$method = 'set'.strtoupper(strtolower($field));
+			$route->$method($value);
+		}
 	}
 	$em->persist($route);
 }
