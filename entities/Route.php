@@ -23,10 +23,10 @@ class Route extends Entity
 	/** @var int ID */
 	protected $id;
 
-	/** @var string Route name */
+	/** @var string Name */
 	protected $name;
 
-	/** @var string Route pattern */
+	/** @var string Pattern */
 	protected $pattern;
 
 	/** @var string Module */
@@ -62,7 +62,7 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param int $id
+	 * @param int $id ID
 	 */
 	public function setId($id)
 	{
@@ -78,103 +78,7 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param string $action
-	 */
-	public function setAction($action)
-	{
-		$this->action = $action;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getAction()
-	{
-		return $this->action;
-	}
-
-	/**
-	 * @param string $application
-	 */
-	public function setApplication($application)
-	{
-		$this->application = $application;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getApplication()
-	{
-		return $this->application;
-	}
-
-	/**
-	 * @param string $controller
-	 */
-	public function setController($controller)
-	{
-		$this->controller = $controller;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getController()
-	{
-		return $this->controller;
-	}
-
-	/**
-	 * @param \DateTime $created
-	 */
-	public function setCreated($created)
-	{
-		$this->created = $created;
-	}
-
-	/**
-	 * @return \DateTime
-	 */
-	public function getCreated()
-	{
-		return $this->created;
-	}
-
-	/**
-	 * @param boolean $enabled
-	 */
-	public function setEnabled($enabled)
-	{
-		$this->enabled = $enabled;
-	}
-
-	/**
-	 * @return boolean
-	 */
-	public function getEnabled()
-	{
-		return $this->enabled;
-	}
-
-	/**
-	 * @param string $module
-	 */
-	public function setModule($module)
-	{
-		$this->module = $module;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getModule()
-	{
-		return $this->module;
-	}
-
-	/**
-	 * @param string $name
+	 * @param string $name Name
 	 */
 	public function setName($name)
 	{
@@ -190,7 +94,7 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param string $pattern
+	 * @param string $pattern Pattern
 	 */
 	public function setPattern($pattern)
 	{
@@ -205,8 +109,73 @@ class Route extends Entity
 		return $this->pattern;
 	}
 
+
 	/**
-	 * @param string $requirements
+	 * @param string $module Module
+	 */
+	public function setModule($module)
+	{
+		$this->module = $module;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getModule()
+	{
+		return $this->module;
+	}
+
+	/**
+	 * @param string $application Application
+	 */
+	public function setApplication($application)
+	{
+		$this->application = $application;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getApplication()
+	{
+		return $this->application;
+	}
+
+	/**
+	 * @param string $controller Controller
+	 */
+	public function setController($controller)
+	{
+		$this->controller = $controller;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getController()
+	{
+		return $this->controller;
+	}
+
+	/**
+	 * @param string $action Action
+	 */
+	public function setAction($action)
+	{
+		$this->action = $action;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getAction()
+	{
+		return $this->action;
+	}
+
+	/**
+	 * @param string $requirements Requirements
 	 */
 	public function setRequirements($requirements)
 	{
@@ -226,7 +195,39 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param \DateTime $updated
+	 * @param boolean $enabled Enabled
+	 */
+	public function setEnabled($enabled)
+	{
+		$this->enabled = $enabled;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getEnabled()
+	{
+		return $this->enabled;
+	}
+
+	/**
+	 * @param \DateTime $created Created date
+	 */
+	public function setCreated($created)
+	{
+		$this->created = $created;
+	}
+
+	/**
+	 * @return \DateTime
+	 */
+	public function getCreated()
+	{
+		return $this->created;
+	}
+
+	/**
+	 * @param \DateTime $updated Updated date
 	 */
 	public function setUpdated($updated)
 	{
