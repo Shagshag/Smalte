@@ -10,6 +10,9 @@ Route:
     uniqueConstraints:
         route:
             columns: name
+    manyToOne:
+        application:
+            targetEntity: Application
     fields:
         name:
             type: string
@@ -18,8 +21,6 @@ Route:
         module:
             type: string
             nullable: true
-        application:
-            type: string
         controller:
             type: string
         action:
