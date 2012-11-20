@@ -36,7 +36,7 @@ class Language extends Entity
 	protected $updated;
 
 	/**
-	 * @param string ID (E.g. en, fr, au, ...)
+	 * @param string $id ID (E.g. en, fr, au, ...)
 	 */
 	public function setId($id)
 	{
