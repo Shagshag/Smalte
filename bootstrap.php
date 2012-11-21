@@ -13,7 +13,7 @@
  *
  * Read LICENCE file for more information.
  */
- 
+
 // ===== SECTION: Debug =====
 function p($a){echo '<xmp>';print_r($a);echo '</xmp>';}
 function d($a){p($a);exit;}
@@ -71,15 +71,6 @@ use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\Common\Cache\ArrayCache;
 
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\User');
-$compiler->addFile(__DIR__.'/entities/schemas/User.yml');
-$compiler->addFile(__DIR__.'/modules/smalte/sample/entities/extensions/schemas/User.yml', 'smalte.sample');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
-
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Modules\\Smalte\\Sample\\Entities\\Topic');
-$compiler->addFile(__DIR__.'/modules/smalte/sample/entities/schemas/Topic.yml');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
-
 $config = Setup::createConfiguration(
 	true,
 	null,
@@ -104,4 +95,75 @@ foreach (new DirectoryIterator(__DIR__.'/libraries/smalte/orm/helpers') as $file
 		$helperName = $file->getBasename('.php');
 		Smalte\ORM\HelperFactory::registerHelper($helperName, "\\Smalte\\ORM\\Helpers\\{$helperName}");
 	}
+}
+
+
+
+// ===== SECTION: Router =====
+use \Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\RequestContext;
+use Symfony\Component\Routing\Router;
+use Smalte\Routing\Loader\Main;
+
+if (!defined('INSTALL'))
+{
+	// Get repositories
+	try
+	{
+		$applications	= $em->getRepository('Entities\Application');
+		$languages		= $em->getRepository('Entities\Language');
+		$routes			= $em->getRepository('Entities\Route');
+	}
+	catch (Exception $exception)
+	{
+		exit('Please goto <a href="install.php">Install / Upgrade</a>.');
+	}
+
+	// Set router options
+	$options = array(
+		//'cache_dir' => realpath(__DIR__.'/../../../data/cache/routing/'),
+		'matcher_cache_class'	=> 'Matcher',
+		'generator_cache_class'	=> 'Generator',
+	);
+
+	// Create request and context
+	$request = Request::createFromGlobals();
+	$context = new RequestContext();
+	$context->fromRequest($request);
+
+	// Get main language
+	$mainLanguage = $languages->findOneBy(array('main' => 1));
+
+	// Homepage ? Goto translated homepage
+	if ($request->getPathInfo() === '/')
+	{
+		// @todo : Util redirect
+		$redirect = new RedirectResponse($request->getPathInfo().$mainLanguage->getId().'/');
+		$redirect->send();
+	}
+
+	// Create router and main loader
+	$loader = new Main($applications, $languages, $mainLanguage->getId());
+	$router = new Router($loader, $routes, $options, $context);
+
+	// Get matcher and generator, ho yeah!!
+	$matcher = $router->getMatcher();
+	$generator = $router->getGenerator();
+
+	try
+	{
+		$parameters = $matcher->match($request->getPathInfo());
+	}
+	catch (Exception $exception)
+	{
+		$parameters = array(
+			'_locale'		=> 'en',
+			'_route'		=> 'error404',
+			'_application'	=> 'FrontOffice',
+			'_controller'	=> 'Error',
+			'_action'		=> 'display404',
+		);
+	}
+
+	// Just use $parameters...
 }
