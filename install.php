@@ -23,27 +23,29 @@ define('INSTALL', true);
 
 require __DIR__.'/bootstrap.php';
 
+define('EOL', '<br />'.PHP_EOL);
+
 // ===== SECTION: Router =====
 // Add application schema
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Application');
 $compiler->addFile(__DIR__.'/entities/schemas/Application.yml');
 $compiler->write(__DIR__.'/data/doctrine/schemas/');
 
-echo '- Create Entities\\Application schema'.PHP_EOL;
+echo '- Create Entities\\Application schema'.EOL;
 
 // Add language schema
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Language');
 $compiler->addFile(__DIR__.'/entities/schemas/Language.yml');
 $compiler->write(__DIR__.'/data/doctrine/schemas/');
 
-echo '- Create Entities\\Language schema'.PHP_EOL;
+echo '- Create Entities\\Language schema'.EOL;
 
 // Add route schema
 $compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Route');
 $compiler->addFile(__DIR__.'/entities/schemas/Route.yml');
 $compiler->write(__DIR__.'/data/doctrine/schemas/');
 
-echo '- Create Entities\\Route schema'.PHP_EOL;
+echo '- Create Entities\\Route schema'.EOL;
 
 // Dump schema in database
 use Doctrine\ORM\Tools\SchemaTool;
@@ -62,25 +64,25 @@ catch (Exception $exception)
 	$schema->updateSchema($classes, true);
 }
 
-echo '- Dump schema to database'.PHP_EOL;
+echo '- Dump schema to database'.EOL;
 
 // Truncate "languages" table
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('languages');
 $em->getConnection()->executeUpdate($truncate);
 
-echo '- Truncate "languages" table'.PHP_EOL;
+echo '- Truncate "languages" table'.EOL;
 
 // Truncate "routes" table
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('routes');
 $em->getConnection()->executeUpdate($truncate);
 
-echo '- Truncate "routes" table'.PHP_EOL;
+echo '- Truncate "routes" table'.EOL;
 
 // Truncate "applications" table
 $truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('applications');
 $em->getConnection()->executeUpdate($truncate);
 
-echo '- Truncate "applications" table'.PHP_EOL;
+echo '- Truncate "applications" table'.EOL;
 
 // Add application data
 $applications = array(
@@ -104,7 +106,7 @@ foreach ($applications AS $applicationData)
 	}
 	$em->persist($application);
 
-	echo '- Create application "'.$applicationData['name'].'"'.PHP_EOL;
+	echo '- Create application "'.$applicationData['name'].'"'.EOL;
 }
 $em->flush();
 $em->clear();
@@ -132,7 +134,7 @@ foreach ($languages AS $languageData)
 	}
 	$em->persist($language);
 
-	echo '- Create language "'.$languageData['name'].'"'.PHP_EOL;
+	echo '- Create language "'.$languageData['name'].'"'.EOL;
 }
 $em->flush();
 $em->clear();
@@ -212,7 +214,7 @@ foreach ($routes AS $routeData)
 	}
 	$em->persist($route);
 
-	echo '- Create route "'.$routeData['name'].'"'.PHP_EOL;
+	echo '- Create route "'.$routeData['name'].'"'.EOL;
 }
 $em->flush();
 $em->clear();
