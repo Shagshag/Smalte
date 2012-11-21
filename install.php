@@ -149,6 +149,7 @@ $routes = array(
 		'controller'	=> 'Home',
 		'action'		=> 'display',
 		'requirements'	=> NULL,
+		'methods'		=> 'GET',
 	),
 	array(
 		'name'			=> 'foLogin',
@@ -158,6 +159,7 @@ $routes = array(
 		'controller'	=> 'Login',
 		'action'		=> 'display',
 		'requirements'	=> NULL,
+		'methods'		=> 'GET',
 	),
 	array(
 		'name'			=> 'boHome',
@@ -167,6 +169,7 @@ $routes = array(
 		'controller'	=> 'Home',
 		'action'		=> 'display',
 		'requirements'	=> NULL,
+		'methods'		=> 'GET',
 	),
 	array(
 		'name'			=> 'boLogin',
@@ -176,6 +179,7 @@ $routes = array(
 		'controller'	=> 'Login',
 		'action'		=> 'display',
 		'requirements'	=> NULL,
+		'methods'		=> 'GET',
 	),
 	array(
 		'name'			=> 'moSmalteSampleHello',
@@ -185,6 +189,7 @@ $routes = array(
 		'controller'	=> 'Hello',
 		'action'		=> 'display',
 		'requirements'	=> NULL,
+		'methods'		=> 'GET',
 	),
 	array(
 		'name'			=> 'moSmalteSampleComplex',
@@ -194,6 +199,7 @@ $routes = array(
 		'controller'	=> 'Complex',
 		'action'		=> 'display',
 		'requirements'	=> '{"year":"[0-9]{4}","number":"\\\d"}',
+		'methods'		=> 'GET',
 	),
 );
 foreach ($routes AS $routeData)

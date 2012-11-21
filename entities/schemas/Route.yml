@@ -28,6 +28,9 @@ Route:
         requirements:
             type: string
             nullable: true
+        methods:
+            type: string
+            default: GET
         enabled:
             type: boolean
         created:

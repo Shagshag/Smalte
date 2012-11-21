@@ -44,6 +44,9 @@ class Route extends Entity
 	/** @var string Requirements */
 	protected $requirements;
 
+	/** @var string Methods (E.g. GET|POST|...) */
+	protected $methods = 'GET';
+
 	/** @var bool Enabled route */
 	protected $enabled = true;
 
@@ -192,6 +195,22 @@ class Route extends Entity
 	public function getRequirements()
 	{
 		return \json_decode($this->requirements);
+	}
+
+	/**
+	 * @param string $methods Methods (E.g. GET|POST|...)
+	 */
+	public function setMethods($methods)
+	{
+		$this->methods = $methods;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function getMethods()
+	{
+		return $this->methods;
 	}
 
 	/**
