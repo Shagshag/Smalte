@@ -35,6 +35,7 @@ $loader->register();
 // ===== SECTION: Dependency Injection Container =====
 use Smalte\DependencyInjection\Container;
 use Smalte\Template\Template;
+use Smalte\Mailer\Mailer;
 
 $container = new Container();
 
@@ -84,6 +85,13 @@ if ($currentEnvironment)
 	}
 }
 
+// Push Mail configuration in container
+$container['mail.configuration'] = $configuration['mail'];
+
+// Push Mailing service in container
+$container['mailing'] = function ($c) {
+	return Mailer::create($c['mail.configuration']);
+};
 
 
 // ===== SECTION: ORM =====
