@@ -31,10 +31,10 @@ Route:
         methods:
             type: string
             default: GET
-        enabled:
+        isEnabled:
             type: boolean
-        created:
+        dateCreated:
             type: datetime
-        updated:
+        dateUpdated:
             type: datetime
             nullable: true

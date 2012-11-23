@@ -11,12 +11,12 @@ Language:
     fields:
         name:
             type: string
-        main:
+        isMain:
             type: boolean
-        enabled:
+        isEnabled:
             type: boolean
-        created:
+        dateCreated:
             type: datetime
-        updated:
+        dateUpdated:
             type: datetime
             nullable: true

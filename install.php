@@ -58,19 +58,31 @@ $classes = array(
 
 // Drop "languages" table
 $drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('languages');
-$em->getConnection()->executeUpdate($drop);
+try
+{
+	$em->getConnection()->executeUpdate($drop);
+}
+catch (Exception $exception) {}
 
 echo '- Drop "languages" table'.EOL;
 
 // Drop "routes" table
 $drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('routes');
-$em->getConnection()->executeUpdate($drop);
+try
+{
+	$em->getConnection()->executeUpdate($drop);
+}
+catch (Exception $exception) {}
 
 echo '- Drop "routes" table'.EOL;
 
 // Drop "applications" table
 $drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('applications');
-$em->getConnection()->executeUpdate($drop);
+try
+{
+	$em->getConnection()->executeUpdate($drop);
+}
+catch (Exception $exception) {}
 
 echo '- Drop "applications" table'.EOL;
 
@@ -115,14 +127,14 @@ $em->clear();
 // Add language data
 $languages = array(
 	array(
-		'id'	=> 'en',
-		'name'	=> 'English',
-		'main'	=> true,
+		'id'		=> 'en',
+		'name'		=> 'English',
+		'isMain'	=> true,
 	),
 	array(
-		'id'	=> 'fr',
-		'name'	=> 'French',
-		'main'	=> false,
+		'id'		=> 'fr',
+		'name'		=> 'French',
+		'isMain'	=> false,
 	),
 );
 foreach ($languages AS $languageData)

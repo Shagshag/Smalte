@@ -132,7 +132,7 @@ if (!defined('INSTALL'))
 	$context->fromRequest($request);
 
 	// Get main language
-	$mainLanguage = $languages->findOneBy(array('main' => 1));
+	$mainLanguage = $languages->findOneBy(array('isMain' => 1));
 
 	// Homepage ? Goto translated homepage
 	if ($request->getPathInfo() === '/')

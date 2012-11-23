@@ -27,23 +27,23 @@ class Language extends Entity
 	protected $name;
 
 	/** @var bool Main */
-	protected $main = false;
+	protected $isMain = false;
 
 	/** @var bool Enabled */
-	protected $enabled = true;
+	protected $isEnabled = true;
 
 	/** @var \DateTime Created date */
-	protected $created;
+	protected $dateCreated;
 
 	/** @var \DateTime Updated date */
-	protected $updated;
+	protected $dateUpdated;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
-		$this->setCreated(new \DateTime('now'));
+		$this->setDateCreated(new \DateTime('now'));
 	}
 
 	/**
@@ -81,64 +81,64 @@ class Language extends Entity
 	/**
 	 * @param $main boolean Main
 	 */
-	public function setMain($main)
+	public function setIsMain($main)
 	{
-		$this->main = (bool)$main;
+		$this->isMain = (bool)$main;
 	}
 
 	/**
 	 * @return bool
 	 */
-	public function getMain()
+	public function getIsMain()
 	{
-		return $this->main;
+		return $this->isMain;
 	}
 
 	/**
 	 * @param boolean $enabled Enabled
 	 */
-	public function setEnabled($enabled)
+	public function setIsEnabled($enabled)
 	{
-		$this->enabled = $enabled;
+		$this->isEnabled = (bool)$enabled;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function getEnabled()
+	public function getIsEnabled()
 	{
-		return $this->enabled;
+		return $this->isEnabled;
 	}
 
 	/**
 	 * @param \DateTime $created Created date
 	 */
-	public function setCreated($created)
+	public function setDateCreated($created)
 	{
-		$this->created = $created;
+		$this->dateCreated = $created;
 	}
 
 	/**
 	 * @return \DateTime
 	 */
-	public function getCreated()
+	public function getDateCreated()
 	{
-		return $this->created;
+		return $this->dateCreated;
 	}
 
 	/**
 	 * @param \DateTime $updated Updated date
 	 */
-	public function setUpdated($updated)
+	public function setDateUpdated($updated)
 	{
-		$this->updated = $updated;
+		$this->dateUpdated = $updated;
 	}
 
 	/**
 	 * @return \DateTime
 	 */
-	public function getUpdated()
+	public function getDateUpdated()
 	{
-		return $this->updated;
+		return $this->dateUpdated;
 	}
 }

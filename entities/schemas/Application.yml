@@ -17,10 +17,10 @@ Application:
             type: string
         prefix:
             type: string
-        enabled:
+        isEnabled:
             type: boolean
-        created:
+        dateCreated:
             type: datetime
-        updated:
+        dateUpdated:
             type: datetime
             nullable: true

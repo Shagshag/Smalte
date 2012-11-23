@@ -30,20 +30,20 @@ class Application extends Entity
 	protected $prefix;
 
 	/** @var bool Enabled */
-	protected $enabled = true;
+	protected $isEnabled = true;
 
 	/** @var \DateTime Created date */
-	protected $created;
+	protected $dateCreated;
 
 	/** @var \DateTime Updated date */
-	protected $updated;
+	protected $dateUpdated;
 
 	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
-		$this->setCreated(new \DateTime('now'));
+		$this->setDateCreated(new \DateTime('now'));
 	}
 
 	/**
@@ -97,48 +97,48 @@ class Application extends Entity
 	/**
 	 * @param boolean $enabled Enabled
 	 */
-	public function setEnabled($enabled)
+	public function setIsEnabled($enabled)
 	{
-		$this->enabled = $enabled;
+		$this->isEnabled = $enabled;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function getEnabled()
+	public function getIsEnabled()
 	{
-		return $this->enabled;
+		return $this->isEnabled;
 	}
 
 	/**
 	 * @param \DateTime $created Created date
 	 */
-	public function setCreated($created)
+	public function setDateCreated($created)
 	{
-		$this->created = $created;
+		$this->dateCreated = $created;
 	}
 
 	/**
 	 * @return \DateTime
 	 */
-	public function getCreated()
+	public function getDateCreated()
 	{
-		return $this->created;
+		return $this->dateCreated;
 	}
 
 	/**
 	 * @param \DateTime $updated Updated date
 	 */
-	public function setUpdated($updated)
+	public function setDateUpdated($updated)
 	{
-		$this->updated = $updated;
+		$this->dateUpdated = $updated;
 	}
 
 	/**
 	 * @return \DateTime
 	 */
-	public function getUpdated()
+	public function getDateUpdated()
 	{
-		return $this->updated;
+		return $this->dateUpdated;
 	}
 }
