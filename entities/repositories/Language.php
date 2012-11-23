@@ -11,7 +11,7 @@
  *
  * Thanks a lot to our community!
  *
- * Read LICENCE file for more information.
+ * Read LICENSE.md file for more information.
  */
 
 namespace Entities\Repositories;
