@@ -39,13 +39,13 @@ use Smalte\Template\Template;
 $container = new Container();
 
 // @TODO Loading from YML
-$container['templateAdapter'] = 'Smalte\Template\Adapters\Phtml';
-$container['templateDirectory'] = dirname(__FILE__).'/tests/features/template/templates/';
+$container['template.adapter'] = 'Smalte\Template\Adapters\Phtml';
+$container['template.directory'] = dirname(__FILE__).'/tests/features/template/templates/';
 
 // Push templating service in container
 $container['templating'] =  function ($c) {
-	$templating = new Template(new $c['templateAdapter']());
-	$templating->setTemplateDirectory($c['templateDirectory']);
+	$templating = new Template(new $c['template.adapter']());
+	$templating->setTemplateDirectory($c['template.directory']);
 	return $templating;
 };
 
