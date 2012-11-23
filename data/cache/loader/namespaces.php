@@ -5,5 +5,6 @@ return array(
 	'Smalte' => __DIR__.'/../../../libraries',
 	'Symfony' => __DIR__.'/../../../libraries',
 	'Doctrine' => __DIR__.'/../../../libraries',
+	'Pimple' => __DIR__.'/../../../libraries',
 	'Entities' => __DIR__.'/../../../',
 );
