@@ -55,6 +55,25 @@ $classes = array(
 	$em->getClassMetadata('Entities\Language'),
 	$em->getClassMetadata('Entities\Route'),
 );
+
+// Drop "languages" table
+$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('languages');
+$em->getConnection()->executeUpdate($drop);
+
+echo '- Drop "languages" table'.EOL;
+
+// Drop "routes" table
+$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('routes');
+$em->getConnection()->executeUpdate($drop);
+
+echo '- Drop "routes" table'.EOL;
+
+// Drop "applications" table
+$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('applications');
+$em->getConnection()->executeUpdate($drop);
+
+echo '- Drop "applications" table'.EOL;
+
 try
 {
 	$schema->createSchema($classes);
@@ -65,24 +84,6 @@ catch (Exception $exception)
 }
 
 echo '- Dump schema to database'.EOL;
-
-// Truncate "languages" table
-$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('languages');
-$em->getConnection()->executeUpdate($truncate);
-
-echo '- Truncate "languages" table'.EOL;
-
-// Truncate "routes" table
-$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('routes');
-$em->getConnection()->executeUpdate($truncate);
-
-echo '- Truncate "routes" table'.EOL;
-
-// Truncate "applications" table
-$truncate = $em->getConnection()->getDatabasePlatform()->getTruncateTableSQL('applications');
-$em->getConnection()->executeUpdate($truncate);
-
-echo '- Truncate "applications" table'.EOL;
 
 // Add application data
 $applications = array(
