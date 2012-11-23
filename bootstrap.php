@@ -32,6 +32,26 @@ $loader->register();
 
 
 
+// ===== SECTION: Dependency Injection Container =====
+use Smalte\DependencyInjection\Container;
+use Smalte\Template\Template;
+
+$container = new Container();
+
+// @TODO Loading from YML
+$container['templateAdapter'] = 'Smalte\Template\Adapters\Phtml';
+$container['templateDirectory'] = dirname(__FILE__).'/tests/features/template/templates/';
+
+// Push templating service in container
+$container['templating'] =  function ($c) {
+	$templating = new Template(new $c['templateAdapter']());
+	$templating->setTemplateDirectory($c['templateDirectory']);
+	return $templating;
+};
+
+
+
+
 // ===== SECTION: Configuration =====
 use Smalte\Utils\ArrayUtils;
 use Smalte\Environment\Factory;
@@ -100,7 +120,7 @@ foreach (new DirectoryIterator(__DIR__.'/libraries/smalte/orm/helpers') as $file
 
 
 // ===== SECTION: Router =====
-use \Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
 use Smalte\Routing\Loader\Main;
