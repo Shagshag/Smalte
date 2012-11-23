@@ -138,7 +138,7 @@ if (!defined('INSTALL'))
 	if ($request->getPathInfo() === '/')
 	{
 		// @todo : Util redirect
-		$redirect = new RedirectResponse($request->getPathInfo().$mainLanguage->getId().'/');
+		$redirect = new RedirectResponse($request->getBaseUrl().$mainLanguage->getId().'/');
 		$redirect->send();
 	}
 
