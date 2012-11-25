@@ -1,0 +1,18 @@
+parameters:
+  mailing:
+    configuration: %mail
+  templating:
+    adapater: Smalte\Template\Adapters\Phtml
+    directory: tests/features/template/templates/
+
+services:
+  mailing:
+    class: Smalte\Mailer\Mailer
+    method: create
+    arguments: [%mailing.configuration]
+
+  templating:
+    class: Smalte\Template\Template
+    arguments: [@templating.adapater]
+    calls:
+      setTemplateDirectory: [%templating.directory]

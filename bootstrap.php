@@ -30,27 +30,8 @@ $loader->registerNamespaces(include __DIR__.'/data/cache/loader/namespaces.php')
 $loader->registerPrefixes(include __DIR__.'/data/cache/loader/prefixes.php');
 $loader->register();
 
-
-
-// ===== SECTION: Dependency Injection Container =====
-use Smalte\DependencyInjection\Container;
-use Smalte\Template\Template;
-use Smalte\Mailer\Mailer;
-
-$container = new Container();
-
-// @TODO Loading from YML
-$container['template.adapter'] = 'Smalte\Template\Adapters\Phtml';
-$container['template.directory'] = dirname(__FILE__).'/tests/features/template/templates/';
-
-// Push templating service in container
-$container['templating'] =  function ($c) {
-	$templating = new Template(new $c['template.adapter']());
-	$templating->setTemplateDirectory($c['template.directory']);
-	return $templating;
-};
-
-
+// @todo quick fix for swift to move
+require dirname(__FILE__).'/libraries/Swift/swift_required.php';
 
 
 // ===== SECTION: Configuration =====
@@ -85,13 +66,19 @@ if ($currentEnvironment)
 	}
 }
 
-// Push Mail configuration in container
-$container['mail.configuration'] = $configuration['mail'];
 
-// Push Mailing service in container
-$container['mailing'] = function ($c) {
-	return Mailer::create($c['mail.configuration']);
-};
+// ===== SECTION: Dependency Injection Container =====
+use Smalte\DependencyInjection\ContainerBuilder;
+use Smalte\DependencyInjection\Container;
+
+$services = Yaml::parse(file_get_contents(__DIR__.'/data/config/services.yml'));
+
+$containerBuilder = new ContainerBuilder(new Container());
+$containerBuilder->setServices($services['services'])
+	->setParameters($services['parameters'])
+	->setGlobalConfigurations($configuration);
+
+$container = $containerBuilder->build();
 
 
 // ===== SECTION: ORM =====
