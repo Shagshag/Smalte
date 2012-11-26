@@ -22,7 +22,12 @@ class Home extends Controller
 {
 	public function displayAction()
 	{
-		return $this->getResponse('testy');
+		$vars = array(
+			'test' => 'mycontent',
+			'date' => date('H:i:s'),
+		);
+		$content = $this->renderView('home/index', $vars);
+		return $this->getResponse($content);
 	}
 }
 
