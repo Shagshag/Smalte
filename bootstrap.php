@@ -181,4 +181,13 @@ if (!defined('INSTALL'))
 	}
 
 	// Just use $parameters...
+
+	// @TODO : move this in factory and handle exception if class or method does not exist
+	$actionName = $parameters['_action'].'Action';
+	$controllerName = '\Controllers\\'.$parameters['_application']->getName().'\\'.$parameters['_controller'];
+
+	$controller = new $controllerName($container);
+	$response = $controller->$actionName();
+
+	$response->send();
 }
