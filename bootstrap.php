@@ -66,19 +66,19 @@ if ($currentEnvironment)
 	}
 }
 
-
 // ===== SECTION: Dependency Injection Container =====
 use Smalte\DependencyInjection\ContainerBuilder;
 use Smalte\DependencyInjection\Container;
 
 $services = Yaml::parse(file_get_contents(__DIR__.'/data/config/services.yml'));
 
-$containerBuilder = new ContainerBuilder(new Container());
+$containerBuilder = new ContainerBuilder(new Container(), $currentEnvironment === 'prod');
 $containerBuilder->setServices($services['services'])
 	->setParameters($services['parameters'])
 	->setGlobalConfigurations($configuration);
 
 $container = $containerBuilder->build();
+
 
 
 // ===== SECTION: ORM =====
