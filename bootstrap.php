@@ -143,7 +143,7 @@ if (!defined('INSTALL'))
 	);
 
 	// Create request and context
-	$request = Request::createFromGlobals();
+	$request = $container['request'];
 	$context = new RequestContext();
 	$context->fromRequest($request);
 
