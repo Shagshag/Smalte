@@ -16,3 +16,7 @@ services:
     arguments: [@templating.adapater]
     calls:
       setTemplateDirectory: [%templating.directory]
+
+  request:
+    class: Symfony\Component\HttpFoundation\Request
+    method: createFromGlobals
