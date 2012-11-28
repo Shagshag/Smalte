@@ -72,7 +72,8 @@ use Smalte\DependencyInjection\Container;
 
 $services = Yaml::parse(file_get_contents(__DIR__.'/data/config/services.yml'));
 
-$containerBuilder = new ContainerBuilder(new Container(), $currentEnvironment === 'prod');
+$isProductionEnvironment = ($currentEnvironment->getName() === 'prod');
+$containerBuilder = new ContainerBuilder(new Container(), $isProductionEnvironment);
 $containerBuilder->setServices($services['services'])
 	->setParameters($services['parameters'])
 	->setGlobalConfigurations($configuration);
