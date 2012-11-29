@@ -66,19 +66,20 @@ if ($currentEnvironment)
 	}
 }
 
-
 // ===== SECTION: Dependency Injection Container =====
 use Smalte\DependencyInjection\ContainerBuilder;
 use Smalte\DependencyInjection\Container;
 
 $services = Yaml::parse(file_get_contents(__DIR__.'/data/config/services.yml'));
 
-$containerBuilder = new ContainerBuilder(new Container());
+$isProductionEnvironment = ($currentEnvironment->getName() === 'prod');
+$containerBuilder = new ContainerBuilder(new Container(), $isProductionEnvironment);
 $containerBuilder->setServices($services['services'])
 	->setParameters($services['parameters'])
 	->setGlobalConfigurations($configuration);
 
 $container = $containerBuilder->build();
+
 
 
 // ===== SECTION: ORM =====
@@ -142,7 +143,7 @@ if (!defined('INSTALL'))
 	);
 
 	// Create request and context
-	$request = Request::createFromGlobals();
+	$request = $container['request'];
 	$context = new RequestContext();
 	$context->fromRequest($request);
 
