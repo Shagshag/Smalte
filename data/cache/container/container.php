@@ -11,9 +11,7 @@ $container['mailing'] = function ($c) {
 						return $object;
 					};
 $container['templating'] = function ($c) {
-						$object = new Smalte\Template\Template(array (
-  0 => new $c['templating.adapater'](),
-));
+						$object = new Smalte\Template\Template(new $c['templating.adapater']());
 						call_user_func_array(array($object, 'setTemplateDirectory'), array (
   0 => $c['templating.directory'],
 ));
