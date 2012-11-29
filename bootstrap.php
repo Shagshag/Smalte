@@ -120,6 +120,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
 use Smalte\Routing\Loader\Main;
+use Smalte\Controller\ControllerResolver;
 
 if (!defined('INSTALL'))
 {
@@ -181,14 +182,11 @@ if (!defined('INSTALL'))
 		);
 	}
 
-	// Just use $parameters...
 
-	// @TODO : move this in factory and handle exception if class or method does not exist
-	$actionName = $parameters['_action'].'Action';
-	$controllerName = '\Controllers\\'.$parameters['_application']->getName().'\\'.$parameters['_controller'];
+	// ===== SECTION: Controller Resolver =====
 
-	$controller = new $controllerName($container);
-	$response = $controller->$actionName();
-
+	$resolver = new ControllerResolver($parameters, $container);
+	$response = $resolver->getResponse();
 	$response->send();
+
 }
