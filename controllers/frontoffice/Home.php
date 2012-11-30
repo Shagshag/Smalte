@@ -22,12 +22,23 @@ class Home extends Controller
 {
 	public function displayAction()
 	{
-		$vars = array(
+		// Set template vars like this
+		$this->templateVars = array(
 			'test' => 'mycontent',
 			'date' => date('H:i:s'),
 		);
-		$content = $this->renderView('home/index', $vars);
-		return $this->getResponse($content);
+
+		// Controller resolver will automatically render the template corresponding to this method (home/display)
+
+		// You can change template with this method
+		// $this->setTemplate('home/index');
+
+		// In case of json answer (for example)
+		// You can avoid template rendering with this method
+		// $this->noRender();
+
+		// You will be able to set the Json content with this method
+		// $this->setResponseContent(json_encode(array('Smalte', 'is', 'good')));
 	}
 }
 
