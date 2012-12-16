@@ -45,14 +45,6 @@ class Language
 	}
 
 	/**
-	 * @param string $id ID (E.g. en, fr, au, ...)
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getId()
@@ -109,27 +101,11 @@ class Language
 	}
 
 	/**
-	 * @param \DateTime $created Created date
-	 */
-	public function setDateCreated($created)
-	{
-		$this->dateCreated = $created;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
-	}
-
-	/**
-	 * @param \DateTime $updated Updated date
-	 */
-	public function setDateUpdated($updated)
-	{
-		$this->dateUpdated = $updated;
 	}
 
 	/**

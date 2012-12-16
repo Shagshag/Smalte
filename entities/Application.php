@@ -37,22 +37,6 @@ class Application
 	protected $dateUpdated;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
-	 * @param int $id ID
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getId()
@@ -109,27 +93,11 @@ class Application
 	}
 
 	/**
-	 * @param \DateTime $created Created date
-	 */
-	public function setDateCreated($created)
-	{
-		$this->dateCreated = $created;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
-	}
-
-	/**
-	 * @param \DateTime $updated Updated date
-	 */
-	public function setDateUpdated($updated)
-	{
-		$this->dateUpdated = $updated;
 	}
 
 	/**

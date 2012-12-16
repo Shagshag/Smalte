@@ -17,8 +17,9 @@ Entities\Route:
         isEnabled:
         dateCreated:
         dateUpdated:
+        application_id:
         application:
             target: Entities\Application
             relation: one_to_one
             fromField: application_id
-            toField: application_id
+            toField: id
