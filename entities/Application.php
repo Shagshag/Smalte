@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Application extends Entity
+class Application
 {
 	/** @var int ID */
 	protected $id;

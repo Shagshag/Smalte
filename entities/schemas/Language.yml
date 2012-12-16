@@ -1,22 +1,14 @@
-Language:
-    type: entity
+Entities\Language:
     table: languages
-    id:
-        id:
-            type: string
-            columnDefinition: "CHAR(2)"
-    uniqueConstraints:
-        name:
-            columns: name
+
+    plugins:
+        Date:
+
     fields:
+        id:
+            isKey: true
         name:
-            type: string
         isMain:
-            type: boolean
         isEnabled:
-            type: boolean
         dateCreated:
-            type: datetime
         dateUpdated:
-            type: datetime
-            nullable: true

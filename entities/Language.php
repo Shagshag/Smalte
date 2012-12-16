@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Language extends Entity
+class Language
 {
 	/** @var string ID (E.g. en, fr, au, ...) */
 	protected $id;

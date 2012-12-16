@@ -5,7 +5,7 @@ security:
 # Database
 database:
     master:
-        driver:     pdo_mysql
+        driver:     mysql
         host:       localhost
         port:       ~
         dbname:     smalte

@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Route extends Entity
+class Route
 {
 	/** @var int ID */
 	protected $id;
