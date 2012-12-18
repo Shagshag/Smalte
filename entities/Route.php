@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Route extends Entity
+class Route
 {
 	/** @var int ID */
 	protected $id;
@@ -56,20 +54,14 @@ class Route extends Entity
 	/** @var \DateTime Updated date */
 	protected $dateUpdated;
 
+	protected $application_id;
+
 	/**
 	 * Constructor
 	 */
 	public function __construct()
 	{
 		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
-	 * @param int $id ID
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
 	}
 
 	/**
@@ -230,27 +222,11 @@ class Route extends Entity
 	}
 
 	/**
-	 * @param \DateTime $created Created date
-	 */
-	public function setDateCreated($created)
-	{
-		$this->dateCreated = $created;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
-	}
-
-	/**
-	 * @param \DateTime $updated Updated date
-	 */
-	public function setDateUpdated($updated)
-	{
-		$this->dateUpdated = $updated;
 	}
 
 	/**

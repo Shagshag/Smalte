@@ -67,51 +67,31 @@ if ($currentEnvironment)
 }
 
 // ===== SECTION: Dependency Injection Container =====
-use Smalte\DependencyInjection\ContainerBuilder;
-use Smalte\DependencyInjection\Container;
+use Smalte\DependencyInjection\ContainerFactory;
 
-$services = Yaml::parse(file_get_contents(__DIR__.'/data/config/services.yml'));
+$servicesConfigDirectory = __DIR__.'/data/config/';
 
-$isProductionEnvironment = ($currentEnvironment->getName() === 'prod');
-$containerBuilder = new ContainerBuilder(new Container(), $isProductionEnvironment);
-$containerBuilder->setServices($services['services'])
-	->setParameters($services['parameters'])
-	->setGlobalConfigurations($configuration);
-
-$container = $containerBuilder->build();
-
+$useCache = ($currentEnvironment->getName() === 'prod');
+$container = ContainerFactory::create($servicesConfigDirectory, $useCache);
 
 
 // ===== SECTION: ORM =====
-use Doctrine\ORM\EntityManager;
-use Doctrine\ORM\Tools\Setup;
-use Doctrine\Common\Cache\ArrayCache;
+use Smalte\ORM;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
-$config = Setup::createConfiguration(
-	true,
-	null,
-	new ArrayCache()
+$db = new ORM\Database\PDODatabase(
+	$configuration['database']['master']['driver'].':host='.$configuration['database']['master']['host'].';dbname='.$configuration['database']['master']['dbname'],
+	$configuration['database']['master']['user'],
+	$configuration['database']['master']['password']
 );
-$config->setMetadataDriverImpl(new Smalte\ORM\Parser\YamlDriver(__DIR__.'/data/doctrine/schemas/'));
 
-$em = EntityManager::create(array(
-    'driver'	=> $configuration['database']['master']['driver'],
-	'host'		=> $configuration['database']['master']['host'],
-    'user'		=> $configuration['database']['master']['user'],
-    'password'	=> $configuration['database']['master']['password'],
-    'dbname'	=> $configuration['database']['master']['dbname'],
-), $config);
+$definitions = new ORM\Definitions\Definitions();
+$definitions->addParser(new ORM\Definitions\Parser\YamlParser());
+$definitions->addSchemas(__DIR__.'/entities/schemas/');
 
-$em->getMetadataFactory()->setReflectionService(new Smalte\ORM\Parser\AccessibleRuntimeReflectionService());
+$em = new ORM\EntityManager($db, $definitions, new EventDispatcher());
 
-foreach (new DirectoryIterator(__DIR__.'/libraries/smalte/orm/helpers') as $file)
-{
-	if ($file->isFile())
-	{
-		$helperName = $file->getBasename('.php');
-		Smalte\ORM\HelperFactory::registerHelper($helperName, "\\Smalte\\ORM\\Helpers\\{$helperName}");
-	}
-}
+return;
 
 
 
@@ -144,7 +124,7 @@ if (!defined('INSTALL'))
 	);
 
 	// Create request and context
-	$request = $container['request'];
+	$request = $container->get('request');
 	$context = new RequestContext();
 	$context->fromRequest($request);
 

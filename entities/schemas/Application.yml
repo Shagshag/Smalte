@@ -1,26 +1,14 @@
-Application:
-    type: entity
+Entities\Application:
     table: applications
-    id:
-        id:
-            type: integer
-            unsigned: true
-            generator:
-                strategy: AUTO
-    uniqueConstraints:
-        name:
-            columns: name
-        prefix:
-            columns: prefix
+
+    plugins:
+        Date:
+
     fields:
+        id:
+            isKey: true
         name:
-            type: string
         prefix:
-            type: string
         isEnabled:
-            type: boolean
         dateCreated:
-            type: datetime
         dateUpdated:
-            type: datetime
-            nullable: true

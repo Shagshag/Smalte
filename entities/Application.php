@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Application extends Entity
+class Application
 {
 	/** @var int ID */
 	protected $id;
@@ -37,22 +35,6 @@ class Application extends Entity
 
 	/** @var \DateTime Updated date */
 	protected $dateUpdated;
-
-	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
-	 * @param int $id ID
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
-	}
 
 	/**
 	 * @return int
@@ -111,27 +93,11 @@ class Application extends Entity
 	}
 
 	/**
-	 * @param \DateTime $created Created date
-	 */
-	public function setDateCreated($created)
-	{
-		$this->dateCreated = $created;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
-	}
-
-	/**
-	 * @param \DateTime $updated Updated date
-	 */
-	public function setDateUpdated($updated)
-	{
-		$this->dateUpdated = $updated;
 	}
 
 	/**

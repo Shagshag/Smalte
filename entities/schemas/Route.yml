@@ -1,40 +1,25 @@
-Route:
-    type: entity
+Entities\Route:
     table: routes
-    id:
-        id:
-            type: integer
-            unsigned: true
-            generator:
-                strategy: AUTO
-    uniqueConstraints:
-        route:
-            columns: name
-    manyToOne:
-        application:
-            targetEntity: Application
+
+    plugins:
+        Date:
+
     fields:
+        id:
+            isKey: true
         name:
-            type: string
         pattern:
-            type: string
         module:
-            type: string
-            nullable: true
         controller:
-            type: string
         action:
-            type: string
         requirements:
-            type: string
-            nullable: true
         methods:
-            type: string
-            default: GET
         isEnabled:
-            type: boolean
         dateCreated:
-            type: datetime
         dateUpdated:
-            type: datetime
-            nullable: true
+        application_id:
+        application:
+            target: Entities\Application
+            relation: one_to_one
+            fromField: application_id
+            toField: id

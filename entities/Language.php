@@ -16,9 +16,7 @@
 
 namespace Entities;
 
-use Smalte\ORM\Entity;
-
-class Language extends Entity
+class Language
 {
 	/** @var string ID (E.g. en, fr, au, ...) */
 	protected $id;
@@ -44,14 +42,6 @@ class Language extends Entity
 	public function __construct()
 	{
 		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
-	 * @param string $id ID (E.g. en, fr, au, ...)
-	 */
-	public function setId($id)
-	{
-		$this->id = $id;
 	}
 
 	/**
@@ -111,27 +101,11 @@ class Language extends Entity
 	}
 
 	/**
-	 * @param \DateTime $created Created date
-	 */
-	public function setDateCreated($created)
-	{
-		$this->dateCreated = $created;
-	}
-
-	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
-	}
-
-	/**
-	 * @param \DateTime $updated Updated date
-	 */
-	public function setDateUpdated($updated)
-	{
-		$this->dateUpdated = $updated;
 	}
 
 	/**
