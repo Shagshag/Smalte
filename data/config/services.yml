@@ -1,15 +1,35 @@
 parameters:
-  mailing.transport: mail
+  database.master.dsn: %database.master.driver%:host=%database.master.host%;dbname=%database.master.dbname%
+  database.schemas.directory: entities/schemas/
 
   templating.directory: tests/features/template/templates/
 
 services:
+  database:
+    class: Smalte\ORM\Database\PDODatabase
+    arguments: [ %database.master.dsn%, %database.master.user%, %database.master.password% ]
+
+  database.definition:
+    class: Smalte\ORM\Definitions\Definitions
+    calls:
+      - [ addParser, [ @database.yamlparser ] ]
+      - [ addSchemas, [ %database.schemas.directory% ] ]
+
+  database.yamlparser:
+    class: Smalte\ORM\Definitions\Parser\YamlParser
+
+  entity.manager:
+    class: Smalte\ORM\EntityManager
+    arguments: [ @database, @database.definition, @event.dispatcher ]
+
+  event.dispatcher:
+    class: Symfony\Component\EventDispatcher\EventDispatcher
+
   mailing:
     class: Smalte\Mailer\Mailer
     factory_class:  Smalte\Mailer\Mailer
     factory_method: create
-    arguments:
-      - transport: %mailing.transport%
+    arguments: [%mail%]
 
   request:
     class: Symfony\Component\HttpFoundation\Request
