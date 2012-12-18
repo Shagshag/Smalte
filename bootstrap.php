@@ -82,8 +82,6 @@ $definitions->addSchemas(__DIR__.'/entities/schemas/');
 
 $em = new ORM\EntityManager($db, $definitions, new EventDispatcher());
 
-return;
-
 
 
 // ===== SECTION: Router =====
@@ -125,7 +123,7 @@ if (!defined('INSTALL'))
 	if ($request->getPathInfo() === '/')
 	{
 		// @todo : Util redirect
-		$redirect = new RedirectResponse($request->getBaseUrl().$mainLanguage->getId().'/');
+		$redirect = new RedirectResponse($request->getBaseUrl().'/'.$mainLanguage->getId().'/');
 		$redirect->send();
 	}
 

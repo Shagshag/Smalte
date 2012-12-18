@@ -1,4 +1,5 @@
 Entities\Application:
+    repository: Entities\Repositories\Application
     table: applications
 
     plugins:
