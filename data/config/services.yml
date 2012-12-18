@@ -1,6 +1,4 @@
 parameters:
-  mailing.transport: mail
-
   templating.directory: tests/features/template/templates/
 
 services:
@@ -8,8 +6,7 @@ services:
     class: Smalte\Mailer\Mailer
     factory_class:  Smalte\Mailer\Mailer
     factory_method: create
-    arguments:
-      - transport: %mailing.transport%
+    arguments: [%mail%]
 
   request:
     class: Symfony\Component\HttpFoundation\Request
