@@ -30,6 +30,8 @@ $loader->registerNamespaces(include __DIR__.'/data/cache/loader/namespaces.php')
 $loader->registerPrefixes(include __DIR__.'/data/cache/loader/prefixes.php');
 $loader->register();
 
+// @todo quick fix for swift to move
+require dirname(__FILE__).'/libraries/Swift/swift_required.php';
 
 
 // ===== SECTION: Configuration =====
@@ -64,28 +66,22 @@ if ($currentEnvironment)
 	}
 }
 
+// ===== SECTION: Dependency Injection Container =====
+use Smalte\DependencyInjection\ContainerFactory;
 
+$servicesConfigDirectory = __DIR__.'/data/config/';
+
+$useCache = ($currentEnvironment->getName() === 'prod');
+$container = ContainerFactory::create($servicesConfigDirectory, $configuration, $useCache);
 
 // ===== SECTION: ORM =====
-use Smalte\ORM;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
-$db = new ORM\Database\PDODatabase(
-	$configuration['database']['master']['driver'].':host='.$configuration['database']['master']['host'].';dbname='.$configuration['database']['master']['dbname'],
-	$configuration['database']['master']['user'],
-	$configuration['database']['master']['password']
-);
-
-$definitions = new ORM\Definitions\Definitions();
-$definitions->addParser(new ORM\Definitions\Parser\YamlParser());
-$definitions->addSchemas(__DIR__.'/entities/schemas/');
-
-$em = new ORM\EntityManager($db, $definitions, new EventDispatcher());
+$em = $container->get('entity.manager');
 
 
 
 // ===== SECTION: Router =====
-use \Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
 use Smalte\Routing\Loader\Main;
@@ -112,7 +108,7 @@ if (!defined('INSTALL'))
 	);
 
 	// Create request and context
-	$request = Request::createFromGlobals();
+	$request = $container->get('request');
 	$context = new RequestContext();
 	$context->fromRequest($request);
 
