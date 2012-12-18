@@ -45,7 +45,7 @@ class CachedContainer extends Container
      */
     protected function getMailingService()
     {
-        return $this->services['mailing'] = call_user_func(array('Smalte\\Mailer\\Mailer', 'create'), array('transport' => 'mail'));
+        return $this->services['mailing'] = call_user_func(array('Smalte\\Mailer\\Mailer', 'create'), array('transport' => 'smtp', 'host' => 'localhost', 'username' => NULL, 'password' => NULL));
     }
 
     /**
@@ -140,7 +140,47 @@ class CachedContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-            'mailing.transport' => 'mail',
+            'security' => array(
+                'token' => 'EditMePlease',
+            ),
+            'security.token' => 'EditMePlease',
+            'database' => array(
+                'master' => array(
+                    'driver' => 'mysql',
+                    'host' => 'localhost',
+                    'port' => NULL,
+                    'dbname' => 'smalte',
+                    'user' => 'root',
+                    'password' => 'root',
+                    'charset' => 'UTF8',
+                ),
+            ),
+            'database.master' => array(
+                'driver' => 'mysql',
+                'host' => 'localhost',
+                'port' => NULL,
+                'dbname' => 'smalte',
+                'user' => 'root',
+                'password' => 'root',
+                'charset' => 'UTF8',
+            ),
+            'database.master.driver' => 'mysql',
+            'database.master.host' => 'localhost',
+            'database.master.port' => NULL,
+            'database.master.dbname' => 'smalte',
+            'database.master.user' => 'root',
+            'database.master.password' => 'root',
+            'database.master.charset' => 'UTF8',
+            'mail' => array(
+                'transport' => 'smtp',
+                'host' => 'localhost',
+                'username' => NULL,
+                'password' => NULL,
+            ),
+            'mail.transport' => 'smtp',
+            'mail.host' => 'localhost',
+            'mail.username' => NULL,
+            'mail.password' => NULL,
             'templating.directory' => 'tests/features/template/templates/',
         );
     }

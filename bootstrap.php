@@ -72,7 +72,7 @@ use Smalte\DependencyInjection\ContainerFactory;
 $servicesConfigDirectory = __DIR__.'/data/config/';
 
 $useCache = ($currentEnvironment->getName() === 'prod');
-$container = ContainerFactory::create($servicesConfigDirectory, $useCache);
+$container = ContainerFactory::create($servicesConfigDirectory, $configuration, $useCache);
 
 
 // ===== SECTION: ORM =====
