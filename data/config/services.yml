@@ -1,0 +1,25 @@
+parameters:
+  mailing.transport: mail
+
+  templating.directory: tests/features/template/templates/
+
+services:
+  mailing:
+    class: Smalte\Mailer\Mailer
+    factory_class:  Smalte\Mailer\Mailer
+    factory_method: create
+    arguments:
+      - transport: %mailing.transport%
+
+  request:
+    class: Symfony\Component\HttpFoundation\Request
+    factory_class: Symfony\Component\HttpFoundation\Request
+    factory_method: createFromGlobals
+
+  templating.adapter:
+    class: Smalte\Template\Adapters\Phtml
+  templating:
+    class: Smalte\Template\Template
+    arguments: [ @templating.adapter ]
+    calls:
+      - [ setTemplateDirectory, [%templating.directory%] ]
