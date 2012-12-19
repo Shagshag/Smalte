@@ -85,6 +85,7 @@ use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
 use Smalte\Routing\Loader\Main;
+use Smalte\Controller\ControllerResolver;
 
 if (!defined('INSTALL'))
 {
@@ -146,5 +147,11 @@ if (!defined('INSTALL'))
 		);
 	}
 
-	// Just use $parameters...
+
+	// ===== SECTION: Controller Resolver =====
+
+	$resolver = new ControllerResolver($parameters, $container);
+	$response = $resolver->getResponse();
+	$response->send();
+
 }
