@@ -1,4 +1,5 @@
 Entities\Route:
+    repository: Entities\Repositories\Route
     table: routes
 
     plugins:

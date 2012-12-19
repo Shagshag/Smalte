@@ -36,6 +36,76 @@ class CachedContainer extends Container
     }
 
     /**
+     * Gets the 'database' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Smalte\ORM\Database\PDODatabase A Smalte\ORM\Database\PDODatabase instance.
+     */
+    protected function getDatabaseService()
+    {
+        return $this->services['database'] = new \Smalte\ORM\Database\PDODatabase('mysql:host=localhost;dbname=smalte', 'root', 'root');
+    }
+
+    /**
+     * Gets the 'database.definition' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Smalte\ORM\Definitions\Definitions A Smalte\ORM\Definitions\Definitions instance.
+     */
+    protected function getDatabase_DefinitionService()
+    {
+        $this->services['database.definition'] = $instance = new \Smalte\ORM\Definitions\Definitions();
+
+        $instance->addParser($this->get('database.yamlparser'));
+        $instance->addSchemas('entities/schemas/');
+
+        return $instance;
+    }
+
+    /**
+     * Gets the 'database.yamlparser' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Smalte\ORM\Definitions\Parser\YamlParser A Smalte\ORM\Definitions\Parser\YamlParser instance.
+     */
+    protected function getDatabase_YamlparserService()
+    {
+        return $this->services['database.yamlparser'] = new \Smalte\ORM\Definitions\Parser\YamlParser();
+    }
+
+    /**
+     * Gets the 'entity.manager' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Smalte\ORM\EntityManager A Smalte\ORM\EntityManager instance.
+     */
+    protected function getEntity_ManagerService()
+    {
+        return $this->services['entity.manager'] = new \Smalte\ORM\EntityManager($this->get('database'), $this->get('database.definition'), $this->get('event.dispatcher'));
+    }
+
+    /**
+     * Gets the 'event.dispatcher' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return Symfony\Component\EventDispatcher\EventDispatcher A Symfony\Component\EventDispatcher\EventDispatcher instance.
+     */
+    protected function getEvent_DispatcherService()
+    {
+        return $this->services['event.dispatcher'] = new \Symfony\Component\EventDispatcher\EventDispatcher();
+    }
+
+    /**
      * Gets the 'mailing' service.
      *
      * This service is shared.
@@ -45,7 +115,7 @@ class CachedContainer extends Container
      */
     protected function getMailingService()
     {
-        return $this->services['mailing'] = call_user_func(array('Smalte\\Mailer\\Mailer', 'create'), array('transport' => 'mail'));
+        return $this->services['mailing'] = call_user_func(array('Smalte\\Mailer\\Mailer', 'create'), array('transport' => 'smtp', 'host' => 'localhost', 'username' => NULL, 'password' => NULL));
     }
 
     /**
@@ -140,7 +210,49 @@ class CachedContainer extends Container
     protected function getDefaultParameters()
     {
         return array(
-            'mailing.transport' => 'mail',
+            'security' => array(
+                'token' => 'EditMePlease',
+            ),
+            'security.token' => 'EditMePlease',
+            'database' => array(
+                'master' => array(
+                    'driver' => 'mysql',
+                    'host' => 'localhost',
+                    'port' => NULL,
+                    'dbname' => 'smalte',
+                    'user' => 'root',
+                    'password' => 'root',
+                    'charset' => 'UTF8',
+                ),
+            ),
+            'database.master' => array(
+                'driver' => 'mysql',
+                'host' => 'localhost',
+                'port' => NULL,
+                'dbname' => 'smalte',
+                'user' => 'root',
+                'password' => 'root',
+                'charset' => 'UTF8',
+            ),
+            'database.master.driver' => 'mysql',
+            'database.master.host' => 'localhost',
+            'database.master.port' => NULL,
+            'database.master.dbname' => 'smalte',
+            'database.master.user' => 'root',
+            'database.master.password' => 'root',
+            'database.master.charset' => 'UTF8',
+            'mail' => array(
+                'transport' => 'smtp',
+                'host' => 'localhost',
+                'username' => NULL,
+                'password' => NULL,
+            ),
+            'mail.transport' => 'smtp',
+            'mail.host' => 'localhost',
+            'mail.username' => NULL,
+            'mail.password' => NULL,
+            'database.master.dsn' => 'mysql:host=localhost;dbname=smalte',
+            'database.schemas.directory' => 'entities/schemas/',
             'templating.directory' => 'tests/features/template/templates/',
         );
     }

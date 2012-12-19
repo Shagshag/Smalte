@@ -37,14 +37,6 @@ class Language
 	protected $dateUpdated;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
 	 * @return string
 	 */
 	public function getId()

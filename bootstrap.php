@@ -72,26 +72,11 @@ use Smalte\DependencyInjection\ContainerFactory;
 $servicesConfigDirectory = __DIR__.'/data/config/';
 
 $useCache = ($currentEnvironment->getName() === 'prod');
-$container = ContainerFactory::create($servicesConfigDirectory, $useCache);
-
+$container = ContainerFactory::create($servicesConfigDirectory, $configuration, $useCache);
 
 // ===== SECTION: ORM =====
-use Smalte\ORM;
-use Symfony\Component\EventDispatcher\EventDispatcher;
 
-$db = new ORM\Database\PDODatabase(
-	$configuration['database']['master']['driver'].':host='.$configuration['database']['master']['host'].';dbname='.$configuration['database']['master']['dbname'],
-	$configuration['database']['master']['user'],
-	$configuration['database']['master']['password']
-);
-
-$definitions = new ORM\Definitions\Definitions();
-$definitions->addParser(new ORM\Definitions\Parser\YamlParser());
-$definitions->addSchemas(__DIR__.'/entities/schemas/');
-
-$em = new ORM\EntityManager($db, $definitions, new EventDispatcher());
-
-return;
+$em = $container->get('entity.manager');
 
 
 
@@ -135,7 +120,7 @@ if (!defined('INSTALL'))
 	if ($request->getPathInfo() === '/')
 	{
 		// @todo : Util redirect
-		$redirect = new RedirectResponse($request->getBaseUrl().$mainLanguage->getId().'/');
+		$redirect = new RedirectResponse($request->getBaseUrl().'/'.$mainLanguage->getId().'/');
 		$redirect->send();
 	}
 

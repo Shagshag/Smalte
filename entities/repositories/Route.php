@@ -16,7 +16,7 @@
 
 namespace Entities\Repositories;
 
-use Smalte\ORM\Repository;
+use Smalte\ORM\Work\Repository;
 
 class Route extends Repository
 {

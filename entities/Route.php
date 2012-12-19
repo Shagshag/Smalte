@@ -57,14 +57,6 @@ class Route
 	protected $application_id;
 
 	/**
-	 * Constructor
-	 */
-	public function __construct()
-	{
-		$this->setDateCreated(new \DateTime('now'));
-	}
-
-	/**
 	 * @return int
 	 */
 	public function getId()

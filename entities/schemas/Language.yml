@@ -1,4 +1,5 @@
 Entities\Language:
+    repository: Entities\Repositories\Language
     table: languages
 
     plugins:

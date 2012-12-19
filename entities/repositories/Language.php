@@ -16,7 +16,7 @@
 
 namespace Entities\Repositories;
 
-use Smalte\ORM\Repository;
+use Smalte\ORM\Work\Repository;
 
 class Language extends Repository
 {
@@ -27,7 +27,7 @@ class Language extends Repository
 	 *
 	 * @return array (E.g. en, fr, au, ...)
 	 */
-	public function getAllIds($criteria)
+	public function getAllIds(array $criteria = array())
 	{
 		$ids = array();
 
