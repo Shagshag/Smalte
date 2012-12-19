@@ -25,74 +25,17 @@ require __DIR__.'/bootstrap.php';
 
 define('EOL', '<br />'.PHP_EOL);
 
-// ===== SECTION: Router =====
-// Add application schema
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Application');
-$compiler->addFile(__DIR__.'/entities/schemas/Application.yml');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
-
-echo '- Create Entities\\Application schema'.EOL;
-
-// Add language schema
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Language');
-$compiler->addFile(__DIR__.'/entities/schemas/Language.yml');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
-
-echo '- Create Entities\\Language schema'.EOL;
-
-// Add route schema
-$compiler = new Smalte\ORM\Parser\YamlCompiler('Entities\\Route');
-$compiler->addFile(__DIR__.'/entities/schemas/Route.yml');
-$compiler->write(__DIR__.'/data/doctrine/schemas/');
-
-echo '- Create Entities\\Route schema'.EOL;
-
 // Dump schema in database
-use Doctrine\ORM\Tools\SchemaTool;
-$schema = new SchemaTool($em);
-$classes = array(
-	$em->getClassMetadata('Entities\Application'),
-	$em->getClassMetadata('Entities\Language'),
-	$em->getClassMetadata('Entities\Route'),
-);
-
-// Drop "languages" table
-$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('languages');
-try
+$queries = explode(';', file_get_contents(__DIR__.'/db_schema.sql'));
+$database = $container->get('database');
+$database->exec('SET foreign_key_checks = 0');
+foreach ($queries as $query)
 {
-	$em->getConnection()->executeUpdate($drop);
-}
-catch (Exception $exception) {}
-
-echo '- Drop "languages" table'.EOL;
-
-// Drop "routes" table
-$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('routes');
-try
-{
-	$em->getConnection()->executeUpdate($drop);
-}
-catch (Exception $exception) {}
-
-echo '- Drop "routes" table'.EOL;
-
-// Drop "applications" table
-$drop = $em->getConnection()->getDatabasePlatform()->getDropTableSQL('applications');
-try
-{
-	$em->getConnection()->executeUpdate($drop);
-}
-catch (Exception $exception) {}
-
-echo '- Drop "applications" table'.EOL;
-
-try
-{
-	$schema->createSchema($classes);
-}
-catch (Exception $exception)
-{
-	$schema->updateSchema($classes, true);
+	$query = trim($query);
+	if ($query)
+	{
+		$database->exec($query);
+	}
 }
 
 echo '- Dump schema to database'.EOL;
@@ -117,12 +60,10 @@ foreach ($applications AS $applicationData)
 		$method = 'set'.ucfirst(strtolower($field));
 		$application->$method($value);
 	}
-	$em->persist($application);
+	$em->insert($application);
 
 	echo '- Create application "'.$applicationData['name'].'"'.EOL;
 }
-$em->flush();
-$em->clear();
 
 // Add language data
 $languages = array(
@@ -145,12 +86,10 @@ foreach ($languages AS $languageData)
 		$method = 'set'.ucfirst(strtolower($field));
 		$language->$method($value);
 	}
-	$em->persist($language);
+	$em->insert($language);
 
 	echo '- Create language "'.$languageData['name'].'"'.EOL;
 }
-$em->flush();
-$em->clear();
 
 // Add route data
 $routes = array(
@@ -231,9 +170,7 @@ foreach ($routes AS $routeData)
 			$route->$method($value);
 		}
 	}
-	$em->persist($route);
+	$em->insert($route);
 
 	echo '- Create route "'.$routeData['name'].'"'.EOL;
 }
-$em->flush();
-$em->clear();

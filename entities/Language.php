@@ -37,6 +37,14 @@ class Language
 	protected $dateUpdated;
 
 	/**
+	 * @param string ID (E.g. en, fr, au, ...)
+	 */
+	public function setId($id)
+	{
+		$this->id = $id;
+	}
+
+	/**
 	 * @return string
 	 */
 	public function getId()
