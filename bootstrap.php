@@ -141,7 +141,7 @@ if (!defined('INSTALL'))
 		$parameters = array(
 			'_locale'		=> 'en',
 			'_route'		=> 'error404',
-			'_application'	=> 'FrontOffice',
+			'_application'	=> $applications->findOneBy(array('name' => 'FrontOffice')),
 			'_controller'	=> 'Error',
 			'_action'		=> 'display404',
 		);

@@ -24,3 +24,4 @@ Entities\Route:
             relation: one_to_one
             fromField: application_id
             toField: id
+            owner: false
