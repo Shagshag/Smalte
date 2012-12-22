@@ -80,16 +80,16 @@ class CachedContainer extends Container
     }
 
     /**
-     * Gets the 'entity.manager' service.
+     * Gets the 'entitymanager' service.
      *
      * This service is shared.
      * This method always returns the same instance of the service.
      *
      * @return Smalte\ORM\EntityManager A Smalte\ORM\EntityManager instance.
      */
-    protected function getEntity_ManagerService()
+    protected function getEntitymanagerService()
     {
-        return $this->services['entity.manager'] = new \Smalte\ORM\EntityManager($this->get('database'), $this->get('database.definition'), $this->get('event.dispatcher'));
+        return $this->services['entitymanager'] = new \Smalte\ORM\EntityManager($this->get('database'), $this->get('database.definition'), $this->get('event.dispatcher'));
     }
 
     /**

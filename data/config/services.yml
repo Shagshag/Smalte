@@ -18,7 +18,7 @@ services:
   database.yamlparser:
     class: Smalte\ORM\Definitions\Parser\YamlParser
 
-  entity.manager:
+  entityManager:
     class: Smalte\ORM\EntityManager
     arguments: [ @database, @database.definition, @event.dispatcher ]
 

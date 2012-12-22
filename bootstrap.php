@@ -76,7 +76,7 @@ $container = ContainerFactory::create($servicesConfigDirectory, $configuration, 
 
 // ===== SECTION: ORM =====
 
-$em = $container->get('entity.manager');
+$em = $container->get('entityManager');
 
 
 
