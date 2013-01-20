@@ -143,7 +143,7 @@ class CachedContainer extends Container
     {
         $this->services['templating'] = $instance = new \Smalte\Template\Template($this->get('templating.adapter'));
 
-        $instance->setTemplateDirectory('tests/features/template/templates/');
+        $instance->setTemplateDirectory('views/');
 
         return $instance;
     }
@@ -253,7 +253,7 @@ class CachedContainer extends Container
             'mail.password' => NULL,
             'database.master.dsn' => 'mysql:host=localhost;dbname=smalte',
             'database.schemas.directory' => 'entities/schemas/',
-            'templating.directory' => 'tests/features/template/templates/',
+            'templating.directory' => 'views/',
         );
     }
 }

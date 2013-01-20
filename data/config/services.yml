@@ -2,7 +2,7 @@ parameters:
   database.master.dsn: %database.master.driver%:host=%database.master.host%;dbname=%database.master.dbname%
   database.schemas.directory: entities/schemas/
 
-  templating.directory: tests/features/template/templates/
+  templating.directory: views/
 
 services:
   database:
