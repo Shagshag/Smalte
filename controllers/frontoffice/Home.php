@@ -20,7 +20,7 @@ use \Smalte\Controller\Controller;
 
 class Home extends Controller
 {
-	public function displayAction()
+	public function indexAction()
 	{
 		// Set template vars like this
 		$templateVars = array(
