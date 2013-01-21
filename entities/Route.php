@@ -45,6 +45,9 @@ class Route
 	/** @var string Methods (E.g. GET|POST|...) */
 	protected $methods = 'GET';
 
+	/** @var bool Default route */
+	protected $isDefault = false;
+
 	/** @var bool Enabled route */
 	protected $isEnabled = true;
 
@@ -195,6 +198,22 @@ class Route
 	public function getMethods()
 	{
 		return $this->methods;
+	}
+
+	/**
+	 * @param boolean $isDefault Default
+	 */
+	public function setIsDefault($isDefault)
+	{
+		$this->isDefault = $isDefault;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getIsDefault()
+	{
+		return $this->isDefault;
 	}
 
 	/**
