@@ -19,7 +19,6 @@ function p($a){echo '<xmp>';print_r($a);echo '</xmp>';}
 function d($a){p($a);exit;}
 
 
-
 // ===== SECTION: Auto-load =====
 require_once __DIR__.'/libraries/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
@@ -83,6 +82,7 @@ $em = $container->get('entityManager');
 // ===== SECTION: Router =====
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
+use Symfony\Component\Routing\Exception\MethodNotAllowedException;
 use Smalte\Routing\Loader\Main;
 use Smalte\Controller\ControllerResolver;
 
@@ -135,6 +135,16 @@ if (!defined('INSTALL'))
 	{
 		$parameters = $matcher->match($request->getPathInfo());
 	}
+	catch (MethodNotAllowedException $exception)
+	{
+		$parameters = array(
+			'_locale'		=> 'en',
+			'_route'		=> 'error403',
+			'_application'	=> $currentApplication,
+			'_controller'	=> 'Error',
+			'_action'		=> 'display403',
+		);
+	}
 	catch (Exception $exception)
 	{
 		$parameters = array(
@@ -148,8 +158,24 @@ if (!defined('INSTALL'))
 
 	// ===== SECTION: Controller Resolver =====
 
-	$resolver = new ControllerResolver($parameters, $container);
-	$response = $resolver->getResponse();
-	$response->send();
+	try
+	{
+		$resolver = new ControllerResolver($parameters, $container);
+		$response = $resolver->getResponse();
+		$response->send();
+	}
+	catch (Exception $exception)
+	{
+		$parameters = array(
+			'_locale'		=> 'en',
+			'_route'		=> 'error500',
+			'_application'	=> $currentApplication,
+			'_controller'	=> 'Error',
+			'_action'		=> 'display500',
+		);
+		$resolver = new ControllerResolver($parameters, $container);
+		$response = $resolver->getResponse();
+		$response->send();
+	}
 
 }
