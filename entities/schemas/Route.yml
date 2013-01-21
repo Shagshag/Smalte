@@ -15,6 +15,7 @@ Entities\Route:
         action:
         requirements:
         methods:
+        isDefault:
         isEnabled:
         dateCreated:
         dateUpdated:

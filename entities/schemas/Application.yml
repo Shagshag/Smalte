@@ -10,6 +10,7 @@ Entities\Application:
             isKey: true
         name:
         prefix:
+        isDefault:
         isEnabled:
         dateCreated:
         dateUpdated:
