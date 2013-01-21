@@ -1,23 +1,8 @@
--- phpMyAdmin SQL Dump
--- version 3.4.5
--- http://www.phpmyadmin.net
---
--- Client: localhost
--- Généré le : Mer 19 Décembre 2012 à 19:09
--- Version du serveur: 5.5.16
--- Version de PHP: 5.3.8
-
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 --
--- Base de données: `smalte`
---
-
--- --------------------------------------------------------
-
---
--- Structure de la table `applications`
+-- Applications table
 --
 
 DROP TABLE IF EXISTS `applications`;
@@ -32,12 +17,12 @@ CREATE TABLE IF NOT EXISTS `applications` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `name` (`name`),
   UNIQUE KEY `prefix` (`prefix`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=4 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `languages`
+-- Languages table
 --
 
 DROP TABLE IF EXISTS `languages`;
@@ -55,7 +40,7 @@ CREATE TABLE IF NOT EXISTS `languages` (
 -- --------------------------------------------------------
 
 --
--- Structure de la table `routes`
+-- Routes table
 --
 
 DROP TABLE IF EXISTS `routes`;
@@ -77,14 +62,12 @@ CREATE TABLE IF NOT EXISTS `routes` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `route` (`name`),
   KEY `IDX_32D5C2B33E030ACD` (`application_id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=7 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci AUTO_INCREMENT=0;
+
+-- --------------------------------------------------------
 
 --
--- Contraintes pour les tables exportées
---
-
---
--- Contraintes pour la table `routes`
+-- Routes constraint
 --
 ALTER TABLE `routes`
   ADD CONSTRAINT `FK_32D5C2B33E030ACD` FOREIGN KEY (`application_id`) REFERENCES `applications` (`id`);
