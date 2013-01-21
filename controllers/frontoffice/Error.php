@@ -20,7 +20,26 @@ use \Smalte\Controller\Controller;
 
 class Error extends Controller
 {
+	/**
+	 * Display 404 Action
+	 */
 	public function display404Action()
+	{
+		// Nothing !
+	}
+
+	/**
+	 * Display 403 Action
+	 */
+	public function display403Action()
+	{
+		// Nothing !
+	}
+
+	/**
+	 * Display 500 Action
+	 */
+	public function display500Action()
 	{
 		// Nothing !
 	}
