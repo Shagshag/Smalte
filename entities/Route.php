@@ -45,6 +45,9 @@ class Route
 	/** @var string Methods (E.g. GET|POST|...) */
 	protected $methods = 'GET';
 
+	/** @var bool Localized route */
+	protected $isLocalized = true;
+
 	/** @var bool Default route */
 	protected $isDefault = false;
 
@@ -198,6 +201,22 @@ class Route
 	public function getMethods()
 	{
 		return $this->methods;
+	}
+
+	/**
+	 * @param boolean $isLocalized
+	 */
+	public function setIsLocalized($isLocalized)
+	{
+		$this->isLocalized = $isLocalized;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getIsLocalized()
+	{
+		return $this->isLocalized;
 	}
 
 	/**

@@ -69,6 +69,7 @@ CREATE TABLE IF NOT EXISTS `routes` (
   `action` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `requirements` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `methods` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `isLocalized` tinyint(1) DEFAULT '1' NOT NULL,
   `isDefault` tinyint(1) DEFAULT '0' NOT NULL,
   `isEnabled` tinyint(1) NOT NULL,
   `dateCreated` datetime NOT NULL,
