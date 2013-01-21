@@ -27,6 +27,9 @@ class Application
 	/** @var string Route prefix of application (E.g. admin) */
 	protected $prefix;
 
+	/** @var bool Default */
+	protected $isDefault = true;
+
 	/** @var bool Enabled */
 	protected $isEnabled = true;
 
@@ -74,6 +77,22 @@ class Application
 	public function getPrefix()
 	{
 		return $this->prefix;
+	}
+
+	/**
+	 * @param boolean $isDefault Default
+	 */
+	public function setIsDefault($isDefault)
+	{
+		$this->isDefault = $isDefault;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function getIsDefault()
+	{
+		return $this->isDefault;
 	}
 
 	/**
