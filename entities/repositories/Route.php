@@ -20,4 +20,20 @@ use Smalte\ORM\Work\Repository;
 
 class Route extends Repository
 {
+	/**
+	 * Get default route by application
+	 *
+	 * @param Application $application
+	 * @param bool $enabled
+	 *
+	 * @return object
+	 */
+	public function getDefaultByApplication(Application $application, $enabled = true)
+	{
+		return $this->findOneBy(array(
+			'application_id'	=> $application->id,
+			'isDefault'			=> true,
+			'isEnabled'			=> $enabled,
+		));
+	}
 }
