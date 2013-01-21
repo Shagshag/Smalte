@@ -45,10 +45,12 @@ $applications = array(
 	array(
 		'name'		=> 'FrontOffice',
 		'prefix'	=> '',
+		'default'	=> true,
 	),
 	array(
 		'name'		=> 'BackOffice',
 		'prefix'	=> 'admin',
+		'default'	=> false,
 
 	),
 );
@@ -104,6 +106,7 @@ $routes = array(
 		'action'		=> 'index',
 		'requirements'	=> NULL,
 		'methods'		=> 'GET',
+		'default'		=> true,
 	),
 	array(
 		'name'			=> 'foLogin',
@@ -114,6 +117,7 @@ $routes = array(
 		'action'		=> 'index',
 		'requirements'	=> NULL,
 		'methods'		=> 'GET',
+		'default'		=> false,
 	),
 	array(
 		'name'			=> 'boHome',
@@ -124,6 +128,7 @@ $routes = array(
 		'action'		=> 'index',
 		'requirements'	=> NULL,
 		'methods'		=> 'GET',
+		'default'		=> true,
 	),
 	array(
 		'name'			=> 'boLogin',
@@ -134,6 +139,7 @@ $routes = array(
 		'action'		=> 'index',
 		'requirements'	=> NULL,
 		'methods'		=> 'GET',
+		'default'		=> false,
 	),
 	array(
 		'name'			=> 'moSmalteSampleHello',
@@ -144,6 +150,7 @@ $routes = array(
 		'action'		=> 'display',
 		'requirements'	=> NULL,
 		'methods'		=> 'GET',
+		'default'		=> false,
 	),
 	array(
 		'name'			=> 'moSmalteSampleComplex',
@@ -154,6 +161,7 @@ $routes = array(
 		'action'		=> 'display',
 		'requirements'	=> '{"year":"[0-9]{4}","number":"\\\d"}',
 		'methods'		=> 'GET',
+		'default'		=> false,
 	),
 );
 foreach ($routes AS $routeData)
