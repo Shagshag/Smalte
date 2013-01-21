@@ -60,6 +60,7 @@ foreach ($applications AS $applicationData)
 		$method = 'set'.ucfirst(strtolower($field));
 		$application->$method($value);
 	}
+	$application->setDateCreated(new \DateTime());
 	$em->insert($application);
 
 	echo '- Create application "'.$applicationData['name'].'"'.EOL;
@@ -86,6 +87,7 @@ foreach ($languages AS $languageData)
 		$method = 'set'.ucfirst(strtolower($field));
 		$language->$method($value);
 	}
+	$language->setDateCreated(new \DateTime());
 	$em->insert($language);
 
 	echo '- Create language "'.$languageData['name'].'"'.EOL;
@@ -170,6 +172,7 @@ foreach ($routes AS $routeData)
 			$route->$method($value);
 		}
 	}
+	$route->setDateCreated(new \DateTime());
 	$em->insert($route);
 
 	echo '- Create route "'.$routeData['name'].'"'.EOL;
