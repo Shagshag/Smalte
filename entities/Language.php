@@ -101,11 +101,29 @@ class Language
 	}
 
 	/**
+	 * @param \DateTime $date
+	 */
+	public function setDateCreated(\DateTime $date)
+	{
+		//$this->dateCreated = $date;
+		$this->dateCreated = $date->format('Y-m-d H:i:s'); // @todo Raphael: Fix it please!
+	}
+
+	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
+	}
+
+	/**
+	 * @param \DateTime $date
+	 */
+	public function setDateUpdated(\DateTime $date)
+	{
+		//$this->dateUpdated = $date;
+		$this->dateUpdated = $date->format('Y-m-d H:i:s'); // @todo Raphael: Fix it please!
 	}
 
 	/**
