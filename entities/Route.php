@@ -214,11 +214,27 @@ class Route
 	}
 
 	/**
+	 * @param \DateTime $date
+	 */
+	public function setDateCreated(\DateTime $date)
+	{
+		$this->dateCreated = $date;
+	}
+
+	/**
 	 * @return \DateTime
 	 */
 	public function getDateCreated()
 	{
 		return $this->dateCreated;
+	}
+
+	/**
+	 * @param \DateTime $date
+	 */
+	public function setDateUpdated(\DateTime $date)
+	{
+		$this->dateUpdated = $date;
 	}
 
 	/**
