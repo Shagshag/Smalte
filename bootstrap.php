@@ -81,7 +81,6 @@ $em = $container->get('entityManager');
 
 
 // ===== SECTION: Router =====
-use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\Routing\RequestContext;
 use Symfony\Component\Routing\Router;
 use Smalte\Routing\Loader\Main;
@@ -116,13 +115,13 @@ if (!defined('INSTALL'))
 	// Get main language
 	$mainLanguage = $languages->findOneBy(array('isMain' => 1));
 
-	// Homepage ? Goto translated homepage
-	if ($request->getPathInfo() === '/')
-	{
-		// @todo : Util redirect
-		$redirect = new RedirectResponse($request->getBaseUrl().'/'.$mainLanguage->getId().'/');
-		$redirect->send();
-	}
+	// Redirect to translation
+	$currentPath = ltrim($request->getPathInfo(), '/');
+	$currentPrefix = substr($currentPath, 0, strpos($currentPath, '/'));
+	$currentPrefix = $currentPrefix ? $currentPrefix : '';
+
+	$currentApplication = $applications->getByPrefix($currentPrefix);
+	$currentApplication = $currentApplication === NULL ? $applications->getDefault() : $currentApplication;
 
 	// Create router and main loader
 	$loader = new Main($applications, $languages, $mainLanguage->getId());
@@ -141,12 +140,11 @@ if (!defined('INSTALL'))
 		$parameters = array(
 			'_locale'		=> 'en',
 			'_route'		=> 'error404',
-			'_application'	=> $applications->findOneBy(array('name' => 'FrontOffice')),
+			'_application'	=> $currentApplication,
 			'_controller'	=> 'Error',
 			'_action'		=> 'display404',
 		);
 	}
-
 
 	// ===== SECTION: Controller Resolver =====
 
