@@ -218,7 +218,8 @@ class Route
 	 */
 	public function setDateCreated(\DateTime $date)
 	{
-		$this->dateCreated = $date;
+		//$this->dateCreated = $date;
+		$this->dateCreated = $date->format('Y-m-d H:i:s'); // @todo Raphael: Fix it please!
 	}
 
 	/**
@@ -234,7 +235,8 @@ class Route
 	 */
 	public function setDateUpdated(\DateTime $date)
 	{
-		$this->dateUpdated = $date;
+		//$this->dateUpdated = $date;
+		$this->dateUpdated = $date->format('Y-m-d H:i:s'); // @todo Raphael: Fix it please!
 	}
 
 	/**
