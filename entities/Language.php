@@ -37,7 +37,7 @@ class Language
 	protected $dateUpdated;
 
 	/**
-	 * @param string ID (E.g. en, fr, au, ...)
+	 * @param string $id ID (E.g. en, fr, au, ...)
 	 */
 	public function setId($id)
 	{
