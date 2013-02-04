@@ -6,7 +6,7 @@ Entities\Language:
         Date:
 
     fields:
-        id:
+        idLanguage:
             isKey: true
         name:
         isMain:

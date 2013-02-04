@@ -19,7 +19,7 @@ namespace Entities;
 class Route
 {
 	/** @var int ID */
-	protected $id;
+	protected $idRoute;
 
 	/** @var string Name */
 	protected $name;
@@ -60,14 +60,14 @@ class Route
 	/** @var \DateTime Updated date */
 	protected $dateUpdated;
 
-	protected $application_id;
+	protected $idApplication;
 
 	/**
 	 * @return int
 	 */
 	public function getId()
 	{
-		return $this->id;
+		return $this->idRoute;
 	}
 
 	/**

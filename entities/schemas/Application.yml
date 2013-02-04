@@ -6,7 +6,7 @@ Entities\Application:
         Date:
 
     fields:
-        id:
+        idApplication:
             isKey: true
         name:
         prefix:

@@ -19,7 +19,7 @@ namespace Entities;
 class Language
 {
 	/** @var string ID (E.g. en, fr, au, ...) */
-	protected $id;
+	protected $idLanguage;
 
 	/** @var string Name */
 	protected $name;
@@ -39,9 +39,9 @@ class Language
 	/**
 	 * @param string $id ID (E.g. en, fr, au, ...)
 	 */
-	public function setId($id)
+	public function setId($idLanguage)
 	{
-		$this->id = $id;
+		$this->idLanguage = $idLanguage;
 	}
 
 	/**
@@ -49,7 +49,7 @@ class Language
 	 */
 	public function getId()
 	{
-		return $this->id;
+		return $this->idLanguage;
 	}
 
 	/**

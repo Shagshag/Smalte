@@ -19,7 +19,7 @@ namespace Entities;
 class Application
 {
 	/** @var int ID */
-	protected $id;
+	protected $idApplication;
 
 	/** @var string Name */
 	protected $name;
@@ -44,7 +44,7 @@ class Application
 	 */
 	public function getId()
 	{
-		return $this->id;
+		return $this->idApplication;
 	}
 
 	/**

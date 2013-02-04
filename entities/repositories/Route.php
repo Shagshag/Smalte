@@ -31,7 +31,7 @@ class Route extends Repository
 	public function getDefaultByApplication(Application $application, $enabled = true)
 	{
 		return $this->findOneBy(array(
-			'application_id'	=> $application->id,
+			'idApplication'	=> $application->idApplication,
 			'isDefault'			=> true,
 			'isEnabled'			=> $enabled,
 		));

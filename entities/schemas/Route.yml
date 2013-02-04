@@ -6,7 +6,7 @@ Entities\Route:
         Date:
 
     fields:
-        id:
+        idRoute:
             isKey: true
         name:
         pattern:
@@ -20,10 +20,10 @@ Entities\Route:
         isEnabled:
         dateCreated:
         dateUpdated:
-        application_id:
+        idApplication:
         application:
             target: Entities\Application
             relation: one_to_one
-            fromField: application_id
-            toField: id
+            fromField: idApplication
+            toField: idApplication
             owner: false
