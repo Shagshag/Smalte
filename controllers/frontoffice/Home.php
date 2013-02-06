@@ -1,7 +1,7 @@
 <?php
 
 /*
- * (c) Smalte - 2012 ~ Until the end of the world...
+ * (c) Smalte - 2013 ~ Until the end of the world...
  *
  * Julien Breux <julien@smalte.org>
  * Fabien Serny <fabien@smalte.org>
