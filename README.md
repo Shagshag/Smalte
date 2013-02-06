@@ -3,7 +3,7 @@
 ## Links
 
 * [Website](http://smalte.org)
-* [Documentation](http://smalte.org/docs)
+* [Documentation](http://docs.smalte.org/)
 
 ## Description
 
